@@ -9,6 +9,10 @@
 
 package view.desktop.components.workarea.components;
 
+import controller.events.workarea.WorkAreaIconOnMouseClicked;
+import controller.events.workarea.WorkAreaIconOnMouseDragged;
+import controller.events.workarea.WorkAreaIconOnMousePressed;
+import controller.events.workarea.WorkAreaIconOnMouseReleased;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -21,7 +25,6 @@ public class WorkAreaIcon extends VBox {
   private Label iconLabel;
 
   public WorkAreaIcon(String imagePath, String iconName) {
-    super.getStylesheets().add("/resources/styles/work-area-icon.css");
     super.getStylesheets()
         .forEach(string -> System.out.println(string));
     super.setPrefSize(100, 100);
@@ -36,5 +39,9 @@ public class WorkAreaIcon extends VBox {
 
     //super.getChildren().addAll(iconImage, iconLabel);
     super.getChildren().addAll(iconImage, iconLabel);
+
+    //super.setOnMousePressed(new WorkAreaIconOnMousePressed());
+    super.setOnMouseDragged(new WorkAreaIconOnMouseDragged(this));
+    super.setOnMouseReleased(new WorkAreaIconOnMouseReleased(this));
   }
 }

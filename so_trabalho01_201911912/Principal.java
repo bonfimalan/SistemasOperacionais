@@ -8,21 +8,27 @@
  *******************************************************************/
 
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.desktop.Desktop;
 
 public class Principal extends Application {
+  private static String[] styles = {
+    "/resources/styles/lower-bar.css",
+    "/resources/styles/work-area-icon.css"
+  };
+  public Desktop desktop = new Desktop(800, 600);
+  
   public static void main(String[] args) {
     launch(args);
   }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = new Desktop(800, 600);
-    Scene scene = new Scene(root);
+    Scene scene = new Scene(desktop);
     
+    scene.getStylesheets().addAll(styles);
+
     primaryStage.setMinWidth(500);
     primaryStage.setMinHeight(350);
     primaryStage.setScene(scene);

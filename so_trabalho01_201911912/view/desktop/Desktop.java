@@ -29,4 +29,12 @@ public class Desktop extends VBox{
 
     super.getChildren().addAll(workArea, lowerBar);
   }
+
+  public LowerBar getLowerBar() {
+    return lowerBar;
+  }
+
+  public WorkArea getWorkArea() {
+    return workArea;
+  }
 }

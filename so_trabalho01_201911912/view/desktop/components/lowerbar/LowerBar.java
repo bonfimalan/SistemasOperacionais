@@ -15,7 +15,7 @@ import view.desktop.components.lowerbar.components.LowerBarInitButton;
 
 public class LowerBar extends HBox {
   private LowerBarInitButton initButton;
-  
+
   public static final double LOWER_BAR_HEIGHT = 40;
 
   public LowerBar() {

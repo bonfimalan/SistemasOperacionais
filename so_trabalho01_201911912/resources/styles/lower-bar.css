@@ -1,7 +1,15 @@
 LowerBar {
-
+  -fx-background-color: 
+      linear-gradient(#033663 30%,#190363);
+  -fx-border-radius: 0;
+  -fx-border: 1px;
+  -fx-border-color: #190363;
 }
 
 LowerBarInitButton {
-  
+  -fx-background-color: #012657;
+}
+
+LowerBarInitButton:hover {
+  -fx-background-color: #01214a;
 }
