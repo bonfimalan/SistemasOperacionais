@@ -23,8 +23,8 @@ public class Principal extends Application {
     Parent root = new Desktop(800, 600);
     Scene scene = new Scene(root);
     
-    primaryStage.setMinWidth(800);
-    primaryStage.setMinHeight(600);
+    primaryStage.setMinWidth(500);
+    primaryStage.setMinHeight(350);
     primaryStage.setScene(scene);
     primaryStage.show();
   }

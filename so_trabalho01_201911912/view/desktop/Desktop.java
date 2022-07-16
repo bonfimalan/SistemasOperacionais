@@ -12,6 +12,7 @@ package view.desktop;
 import javafx.scene.layout.VBox;
 import view.desktop.components.lowerbar.LowerBar;
 import view.desktop.components.workarea.WorkArea;
+import view.desktop.components.workarea.components.WorkAreaIcon;
 
 public class Desktop extends VBox{
   private LowerBar lowerBar;
@@ -24,6 +25,7 @@ public class Desktop extends VBox{
 
     lowerBar = new LowerBar();
     workArea = new WorkArea();
+    workArea.addWorkAreaIcon(new WorkAreaIcon("/resources/images/manel.jpeg", "MAMANEL KKKKKK"));
 
     super.getChildren().addAll(workArea, lowerBar);
   }

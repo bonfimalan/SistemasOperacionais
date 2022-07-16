@@ -9,11 +9,6 @@
 
 package view.desktop.components.workarea.components;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
-
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -26,8 +21,10 @@ public class WorkAreaIcon extends VBox {
   private Label iconLabel;
 
   public WorkAreaIcon(String imagePath, String iconName) {
+    super.getStylesheets().add("/resources/styles/work-area-icon.css");
+    super.getStylesheets()
+        .forEach(string -> System.out.println(string));
     super.setPrefSize(100, 100);
-    super.setSpacing(2);
     super.setAlignment(Pos.TOP_CENTER);
     
     iconImage = new ImageView(new Image(imagePath, 50, 50, false, false));

@@ -3,7 +3,7 @@ Telas e componentes
 + barra inferior
 + botão iniciar
 - caixa do botão iniciar
-- icone da area trabalho
++ icone da area trabalho
 - icone da caixa iniciar
 - pasta da caixa iniciar
 - stage interno para executar aplicações JavaFX

@@ -1,0 +1,8 @@
+WorkAreaIcon {
+  -fx-border: 1px;
+  -fx-border-color: transparent;
+  -fx-padding: 2px;
+}
+WorkAreaIcon:hover {
+  -fx-border-color: rgb(99, 147, 249);
+}

@@ -15,10 +15,12 @@ import view.desktop.components.lowerbar.components.LowerBarInitButton;
 
 public class LowerBar extends HBox {
   private LowerBarInitButton initButton;
+  
+  public static final double LOWER_BAR_HEIGHT = 40;
 
   public LowerBar() {
     // difining size
-    super.setPrefHeight(40);
+    super.setPrefHeight(LOWER_BAR_HEIGHT);
     super.setPrefWidth(VBox.USE_COMPUTED_SIZE);
 
     initButton = new LowerBarInitButton();
