@@ -7,8 +7,12 @@
  * Function: the main class that loads the first Stage
  *******************************************************************/
 
+import controller.WorkAreaController;
+import global.Controllers;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.desktop.Desktop;
 
@@ -25,6 +29,14 @@ public class Principal extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+    // gets the screen size
+    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+    // create the controller for the WorkArea view
+    Controllers.workAreaController = new WorkAreaController(
+      desktop.getWorkArea(), 
+      (int) screenBounds.getMaxX(), 
+      (int) screenBounds.getMaxY());
+
     Scene scene = new Scene(desktop);
     
     scene.getStylesheets().addAll(styles);

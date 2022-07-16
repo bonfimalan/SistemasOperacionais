@@ -16,7 +16,7 @@ import view.desktop.components.workarea.components.WorkAreaIcon;
 public class WorkArea extends AnchorPane {
   public WorkArea() {
     // configuring size
-    VBox.setVgrow(this, Priority.ALWAYS); // height
+    VBox.setVgrow(this, Priority.ALWAYS);
     super.prefWidth(VBox.USE_COMPUTED_SIZE);
   }  
 

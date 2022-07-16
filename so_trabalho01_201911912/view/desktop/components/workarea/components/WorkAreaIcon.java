@@ -9,7 +9,6 @@
 
 package view.desktop.components.workarea.components;
 
-import controller.events.workarea.WorkAreaIconOnMouseClicked;
 import controller.events.workarea.WorkAreaIconOnMouseDragged;
 import controller.events.workarea.WorkAreaIconOnMousePressed;
 import controller.events.workarea.WorkAreaIconOnMouseReleased;
@@ -40,7 +39,7 @@ public class WorkAreaIcon extends VBox {
     //super.getChildren().addAll(iconImage, iconLabel);
     super.getChildren().addAll(iconImage, iconLabel);
 
-    //super.setOnMousePressed(new WorkAreaIconOnMousePressed());
+    super.setOnMousePressed(new WorkAreaIconOnMousePressed(this));
     super.setOnMouseDragged(new WorkAreaIconOnMouseDragged(this));
     super.setOnMouseReleased(new WorkAreaIconOnMouseReleased(this));
   }

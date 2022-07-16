@@ -8,11 +8,13 @@
  *******************************************************************/
 package controller.events.workarea;
 
+import global.Controllers;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import view.desktop.components.workarea.WorkArea;
 import view.desktop.components.workarea.components.WorkAreaIcon;
 
-public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent>  {
+public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent> {
   private WorkAreaIcon icon;
   public static final double GRID_SIZE = 100;
 
@@ -22,13 +24,35 @@ public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent>  {
 
   @Override
   public void handle(MouseEvent event) {
-    int mouseX = (int) event.getSceneX();
-    int mouseY = (int) event.getSceneY();
-    mouseX /= GRID_SIZE;
-    mouseY /= GRID_SIZE;
+    WorkArea workArea = Controllers.workAreaController.getWorkArea();
 
-      icon.setLayoutX(mouseX * GRID_SIZE);
-      icon.setLayoutY(mouseY * GRID_SIZE);
+    int gridXPosition = (int) event.getSceneX();
+    int gridYPosition = (int) event.getSceneY();
+
+    gridXPosition /= GRID_SIZE;
+    gridYPosition /= GRID_SIZE;
+
+    double mouseX = gridXPosition * GRID_SIZE;
+    double mouseY = gridYPosition * GRID_SIZE;
+    
+    // verifies if it can stay at tha place
+    try{
+      double xBounder = ( (int) workArea.getWidth() / 100 ) * 100;
+      double yBounder = ( (int) workArea.getHeight() / 100 ) * 100;
+      if (mouseX < Controllers.workAreaController.getPreviousWidth()
+          && mouseY < Controllers.workAreaController.getPreviousHeight() - 100
+          && Controllers.workAreaController.isGridAreaOccupied(gridXPosition, gridYPosition)) {
+        
+        icon.setLayoutX(mouseX);
+        icon.setLayoutY(mouseY);
+        Controllers.workAreaController.occupyGridArea(gridXPosition, gridYPosition);
+      }
+      else {
+        Controllers.workAreaController.resetIconPosition(icon);
+      }
+    } catch(ArrayIndexOutOfBoundsException e) {
+      Controllers.workAreaController.resetIconPosition(icon);
+    }
 
   }
 }
