@@ -11,11 +11,16 @@ package view.desktop.components.workarea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import view.desktop.components.workarea.components.WorkAreaIcon;
 
 public class WorkArea extends AnchorPane {
   public WorkArea() {
     // configuring size
     VBox.setVgrow(this, Priority.ALWAYS); // height
     super.prefWidth(VBox.USE_COMPUTED_SIZE);
+  }  
+
+  public void addWorkAreaIcon(WorkAreaIcon icon) {
+    super.getChildren().add(icon);
   }
 }
