@@ -1,6 +1,6 @@
 Telas e componentes
-- area de trabalho
-- botão iniciar
++ area de trabalho
++ botão iniciar
 - caixa do botão iniciar
 - icone da area trabalho
 - icone da caixa iniciar

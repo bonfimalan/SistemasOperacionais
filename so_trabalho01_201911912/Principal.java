@@ -8,7 +8,10 @@
  *******************************************************************/
 
 import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.desktop.Desktop;
 
 public class Principal extends Application {
   public static void main(String[] args) {
@@ -17,6 +20,12 @@ public class Principal extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+    Parent root = new Desktop(800, 600);
+    Scene scene = new Scene(root);
+    
+    primaryStage.setMinWidth(800);
+    primaryStage.setMinHeight(600);
+    primaryStage.setScene(scene);
     primaryStage.show();
   }
 }
