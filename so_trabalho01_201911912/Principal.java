@@ -8,6 +8,7 @@
  *******************************************************************/
 
 import apps.manelkkk.Manel;
+import apps.pc_trabalho01_201911912.JogoMemoria;
 import controller.DesktopController;
 import controller.LowerBarController;
 import controller.WorkAreaController;
@@ -56,6 +57,9 @@ public class Principal extends Application {
     
     Manel manel = new Manel();
     Controllers.desktopController.addApp(manel);
+
+    JogoMemoria jogoMemoria = new JogoMemoria();
+    Controllers.desktopController.addApp(jogoMemoria);
 
     //ConcorrenteTrabalho8 trabalho8 = new ConcorrenteTrabalho8();
     //Controllers.desktopController.addApp(trabalho8);

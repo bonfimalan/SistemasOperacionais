@@ -8,6 +8,7 @@
  *******************************************************************/
 package view.internalstage;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -30,6 +31,7 @@ public class InternalStage extends AnchorPane {
     AnchorPane.setBottomAnchor(fakeScene, 0.0);
     AnchorPane.setLeftAnchor(fakeScene, 0.0);
     AnchorPane.setRightAnchor(fakeScene, 0.0);
+    fakeScene.setAlignment(Pos.CENTER);
 
     super.getChildren().addAll(stageUpperBar, fakeScene);
   }
@@ -37,6 +39,8 @@ public class InternalStage extends AnchorPane {
   public void setFakeSceneChild(Pane pane) {
     pane.setPrefWidth(VBox.USE_COMPUTED_SIZE);
     VBox.setVgrow(pane, Priority.ALWAYS);
+
+    pane.setMaxSize(VBox.USE_COMPUTED_SIZE, VBox.USE_COMPUTED_SIZE);
 
     fakeScene.getChildren().add(pane);
   }
