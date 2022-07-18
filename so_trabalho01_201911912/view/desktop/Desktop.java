@@ -6,15 +6,13 @@
  * Name: 
  * Function: 
  *******************************************************************/
-
 package view.desktop;
 
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import view.desktop.components.lowerbar.LowerBar;
 import view.desktop.components.workarea.WorkArea;
-import view.desktop.components.workarea.components.WorkAreaIcon;
 
-public class Desktop extends VBox{
+public class Desktop extends AnchorPane {
   private LowerBar lowerBar;
   private WorkArea workArea;
 
@@ -25,7 +23,6 @@ public class Desktop extends VBox{
 
     lowerBar = new LowerBar();
     workArea = new WorkArea();
-    workArea.addWorkAreaIcon(new WorkAreaIcon("/resources/images/manel.jpeg", "MAMANEL KKKKKK"));
 
     super.getChildren().addAll(workArea, lowerBar);
   }

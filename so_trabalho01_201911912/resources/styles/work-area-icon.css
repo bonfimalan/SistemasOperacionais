@@ -6,3 +6,9 @@ WorkAreaIcon {
 WorkAreaIcon:hover {
   -fx-border-color: rgb(99, 147, 249);
 }
+
+WorkAreaIcon .label .text {
+  -fx-fill: white;
+  -fx-stroke: black;
+  -fx-stroke-width: 0.5px;
+}

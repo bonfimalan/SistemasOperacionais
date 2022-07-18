@@ -8,8 +8,22 @@ LowerBar {
 
 LowerBarInitButton {
   -fx-background-color: #012657;
+  -fx-background-image: url("/resources/images/manel.jpeg");
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-size: cover;
 }
 
 LowerBarInitButton:hover {
   -fx-background-color: #01214a;
+}
+
+LowerBarApplicationButton {
+  -fx-background-color: #006eff;
+  -fx-border: 4px;
+  -fx-border-color: #000813;
+}
+
+LowerBarApplicationButton .label .text {
+  -fx-fill: white;
 }

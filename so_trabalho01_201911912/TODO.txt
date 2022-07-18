@@ -1,3 +1,5 @@
+talvez eu tenha me perdido no meio do projeto
+
 Telas e componentes
 + area de trabalho
 + barra inferior
@@ -7,11 +9,13 @@ Telas e componentes
 - icone da caixa iniciar
 - pasta da caixa iniciar
 - stage interno para executar aplicações JavaFX
+- botao de aplicação
 
 Funcionalidades
-- arrastar e soltar icone na area de trabalho
++ arrastar e soltar icone na area de trabalho
 - filtro na barra iniciar
 - funções de redimensionamento do stage interno
 - funções de minimizar, maximizar e fechar stage interno
+- função de reabrir o stage interno
 - double click para abrir icone
 

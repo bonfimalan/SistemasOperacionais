@@ -1,0 +1,25 @@
+InternalStage {
+  -fx-padding: 4px;
+  -fx-background-color: black;
+}
+
+InternalStage>* {
+  -fx-background-color: white;
+  -fx-cursor: default;
+}
+
+MyButton {
+  -fx-background-color: transparent;
+}
+
+MyButton:hover {
+  -fx-background-color: rgba(186, 186, 186, 0.255);
+}
+
+CloseButton {
+  -fx-background-color: transparent;
+}
+
+CloseButton:hover {
+  -fx-background-color: red;
+}

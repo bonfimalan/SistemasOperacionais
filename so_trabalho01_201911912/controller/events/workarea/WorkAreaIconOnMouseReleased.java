@@ -11,7 +11,6 @@ package controller.events.workarea;
 import global.Controllers;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.desktop.components.workarea.WorkArea;
 import view.desktop.components.workarea.components.WorkAreaIcon;
 
 public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent> {
@@ -24,8 +23,6 @@ public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent> {
 
   @Override
   public void handle(MouseEvent event) {
-    WorkArea workArea = Controllers.workAreaController.getWorkArea();
-
     int gridXPosition = (int) event.getSceneX();
     int gridYPosition = (int) event.getSceneY();
 
@@ -37,8 +34,6 @@ public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent> {
     
     // verifies if it can stay at tha place
     try{
-      double xBounder = ( (int) workArea.getWidth() / 100 ) * 100;
-      double yBounder = ( (int) workArea.getHeight() / 100 ) * 100;
       if (mouseX < Controllers.workAreaController.getPreviousWidth()
           && mouseY < Controllers.workAreaController.getPreviousHeight() - 100
           && Controllers.workAreaController.isGridAreaOccupied(gridXPosition, gridYPosition)) {
