@@ -9,6 +9,7 @@
 package controller.events.internalstage.upperbar;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.ApplicationInfo;
 
@@ -21,6 +22,9 @@ public class CloseButtonOnActionEvent implements EventHandler<MouseEvent> {
 
   @Override
   public void handle(MouseEvent event) {
+    // this event is only for primary button
+    if(!event.getButton().equals(MouseButton.PRIMARY)) return;
+    
     info.onClose();
     info.getController().close();
     info.setOpened(false);

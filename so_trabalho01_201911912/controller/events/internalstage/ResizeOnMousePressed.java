@@ -24,12 +24,14 @@ public class ResizeOnMousePressed implements EventHandler<MouseEvent> {
   private double previousWidth;
   private double previousHeight;
 
+  private boolean oneTime = true;
+
   public ResizeOnMousePressed(InternalStageController internalStageController) {
     this.internalStageController = internalStageController;
   }
 
   @Override
-  public void handle(MouseEvent event) {
+  public void handle(MouseEvent event) {    
     Controllers.workAreaController.savePreviousSize();
 
     previousX = event.getSceneX();
@@ -37,6 +39,11 @@ public class ResizeOnMousePressed implements EventHandler<MouseEvent> {
 
     previousWidth = internalStageController.getInternalStage().getWidth();
     previousHeight = internalStageController.getInternalStage().getHeight();
+
+    if(oneTime) {
+      internalStageController.setRealMinWidth(previousWidth);
+      internalStageController.setRealMinHeight(previousHeight);
+    }
 
     switch (internalStageController.getResizeCursor().toString()) {
       case "N_RESIZE":

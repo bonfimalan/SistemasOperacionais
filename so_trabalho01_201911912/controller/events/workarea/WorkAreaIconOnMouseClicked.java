@@ -11,6 +11,7 @@ package controller.events.workarea;
 import controller.InternalStageController;
 import global.Controllers;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.ApplicationInfo;
 
@@ -23,16 +24,22 @@ public class WorkAreaIconOnMouseClicked implements EventHandler<MouseEvent>  {
 
   @Override
   public void handle(MouseEvent event) {
-    if(info.isOpened()) return;
+    // this event is only for primary button
+    if(!event.getButton().equals(MouseButton.PRIMARY)) return;
 
-    Controllers.workAreaController.addInternalStage(info);
-    Controllers.lowerBarController.addApplicationButton(info);
+    // double click
+    if(event.getClickCount() == 2){
+      if(info.isOpened()) return;
 
-    InternalStageController internalStageController = info.getController();
+      Controllers.workAreaController.addInternalStage(info);
+      Controllers.lowerBarController.addApplicationButton(info);
 
-    internalStageController.setParent(info.getParent());
+      InternalStageController internalStageController = info.getController();
 
-    info.setOpened(true);
+      internalStageController.setParent(info.getParent());
+
+      info.setOpened(true);
+    }
   }
   
 }

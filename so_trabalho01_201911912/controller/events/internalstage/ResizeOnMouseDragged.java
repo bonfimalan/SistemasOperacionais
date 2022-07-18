@@ -30,8 +30,6 @@ public class ResizeOnMouseDragged<T extends HorizontalRisize, S extends Vertical
 
   @Override
   public void handle(MouseEvent event) {
-    // System.out.println(event.getX() + " " + event.getY());
-
     double sceneMouseX = event.getSceneX();
     double sceneMouseY = event.getSceneY();
 

@@ -9,6 +9,7 @@
 package controller.events.workarea;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import view.desktop.components.workarea.components.WorkAreaIcon;
 
@@ -22,6 +23,9 @@ public class WorkAreaIconOnMouseDragged implements EventHandler<MouseEvent>  {
 
   @Override
   public void handle(MouseEvent event) {
+    // this event is only for primary button
+    if(!event.getButton().equals(MouseButton.PRIMARY)) return;
+    
     icon.setLayoutX(event.getSceneX() - OFFSET);
     icon.setLayoutY(event.getSceneY() - OFFSET);
   }

@@ -24,7 +24,7 @@ public class ResizeOnMouseOver implements EventHandler<MouseEvent> {
   }
 
   @Override
-  public void handle(MouseEvent event) {
+  public void handle(MouseEvent event) {    
     double mouseX = event.getX();
     double mouseY = event.getY();
     final int PADDING_SIZE = InternalStageController.PADDING_SIZE;

@@ -40,6 +40,9 @@ public class InternalStageController {
   private double previousLayoultX;
   private double previousLayoultY;
 
+  private double realMinWidth;
+  private double realMinHeight;
+
   private Cursor resizeCursor;
 
   // lower bar button to delete when close application
@@ -185,5 +188,21 @@ public class InternalStageController {
 
   public void setLowerBarButton(LowerBarApplicationButton lowerBarButton) {
     this.lowerBarButton = lowerBarButton;
+  }
+
+  public double getRealMinWidth() {
+    return realMinWidth;
+  }
+
+  public void setRealMinWidth(double realMinWidth) {
+    this.realMinWidth = realMinWidth;
+  }
+
+  public double getRealMinHeight() {
+    return realMinHeight;
+  }
+
+  public void setRealMinHeight(double realMinHeight) {
+    this.realMinHeight = realMinHeight;
   }
 }

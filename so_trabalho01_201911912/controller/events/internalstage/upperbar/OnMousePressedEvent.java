@@ -12,6 +12,7 @@ import controller.InternalStageController;
 import controller.WorkAreaController;
 import global.Controllers;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import view.desktop.components.workarea.WorkArea;
 
@@ -25,6 +26,9 @@ public class OnMousePressedEvent implements EventHandler<MouseEvent> {
 
   @Override
   public void handle(MouseEvent event) {
+    // this event is only for primary button
+    if(!event.getButton().equals(MouseButton.PRIMARY)) return;
+    
     workAreaController = Controllers.workAreaController;
     WorkArea workArea = workAreaController.getWorkArea();
 

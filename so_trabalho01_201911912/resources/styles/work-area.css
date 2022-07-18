@@ -1,8 +1,8 @@
 WorkArea {
-  -fx-background-image: url("/resources/images/manel.jpeg");
+  -fx-background-image: url("/resources/images/plano-de-fundo.jpg");
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
-  -fx-background-size: stretch;
+  -fx-background-size: cover;
 }
 
 InternalStage {
