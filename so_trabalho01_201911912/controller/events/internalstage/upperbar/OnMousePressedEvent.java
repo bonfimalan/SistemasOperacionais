@@ -2,9 +2,11 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 20:51
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:30
+ * Name: OnMousePressedEvent.java
+ * Function: Stores information when the mouse is pressend in the
+ *    upperbar, it will be used to calculate the mouvement of the
+ *    internal stage
  *******************************************************************/
 package controller.events.internalstage.upperbar;
 

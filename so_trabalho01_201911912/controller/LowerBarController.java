@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 17/07/2021 19:41
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:30
+ * Name: LowerBarController.java
+ * Function: A controller to the lower bar
  *******************************************************************/
 package controller;
 

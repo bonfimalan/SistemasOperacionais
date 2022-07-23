@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 18/07/2021 14:14
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 21:05
+ * Name: DesktopController.java
+ * Function: Controlls the actions in the Desktop view
  *******************************************************************/
 package controller;
 

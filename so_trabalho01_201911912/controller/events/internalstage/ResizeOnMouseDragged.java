@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 17/07/2021 13:08
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 21:08
+ * Name: ResizeOnMouseDragged.java
+ * Function: Resize the internal stage when the mouse is dragged
  *******************************************************************/
 
 package controller.events.internalstage;
@@ -33,6 +33,7 @@ public class ResizeOnMouseDragged<T extends HorizontalRisize, S extends Vertical
     double sceneMouseX = event.getSceneX();
     double sceneMouseY = event.getSceneY();
 
+    // checks if it can be resized to that direction
     if (sceneMouseX >= 0
         && sceneMouseX <= Controllers.workAreaController.getPreviousWidth() + InternalStageController.PADDING_SIZE)
       horizontal.horizontalResize(internalStageController.getInternalStage(), event);

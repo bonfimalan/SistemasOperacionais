@@ -2,9 +2,11 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 20:04
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:44
+ * Name: InternalStageController.java
+ * Function: Controller to the InternalStage object, each object will
+ *    be related to one controller, that will controll the actions in
+ *    an internal stage 
  *******************************************************************/
 package controller;
 
@@ -30,6 +32,8 @@ public class InternalStageController {
   private InternalStage internalStage;
 
   private boolean maximized = false;
+
+  private boolean hided = false;
 
   private double offSetX;
   private double offSetY;
@@ -83,11 +87,11 @@ public class InternalStageController {
     Controllers.lowerBarController.deleteApplicationButton(lowerBarButton);
   }
 
-  public void minimize() {
+  public void hideStage() {
     internalStage.setVisible(false);
   }
 
-  public void maximize() {
+  public void revealStage() {
     internalStage.setVisible(true);
   }
 
@@ -204,5 +208,13 @@ public class InternalStageController {
 
   public void setRealMinHeight(double realMinHeight) {
     this.realMinHeight = realMinHeight;
+  }
+
+  public boolean isHided() {
+    return hided;
+  }
+
+  public void setHided(boolean hided) {
+    this.hided = hided;
   }
 }

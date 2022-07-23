@@ -35,10 +35,8 @@ public class JogoMemoria extends ApplicationInfo {
   }
 
   @Override
-  public void onClose() {
-    // TODO Auto-generated method stub
-    
-  }
+  public void onClose() { }
+  
   /*
   public static void main(String[] args) {
     launch(args);

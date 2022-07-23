@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 18/07/2021 14:06
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 21:12
+ * Name: InternalStageOnMouseClicked.java
+ * Function: Will put the stage that is clicked on top of the others
  *******************************************************************/
 package controller.events.internalstage;
 

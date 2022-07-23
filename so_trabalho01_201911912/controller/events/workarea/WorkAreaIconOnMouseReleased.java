@@ -2,9 +2,10 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 14:58
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:59
+ * Name: WorkAreaIconOnMouseReleased.java
+ * Function: Calculates the positoin in whit the icon must be put,
+ *    and occupies that position in the grid
  *******************************************************************/
 package controller.events.workarea;
 
@@ -40,7 +41,7 @@ public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent> {
     try{
       if (mouseX < Controllers.workAreaController.getPreviousWidth()
           && mouseY < Controllers.workAreaController.getPreviousHeight() - 100
-          && Controllers.workAreaController.isGridAreaOccupied(gridXPosition, gridYPosition)) {
+          && !Controllers.workAreaController.isGridAreaOccupied(gridXPosition, gridYPosition)) {
         
         icon.setLayoutX(mouseX);
         icon.setLayoutY(mouseY);

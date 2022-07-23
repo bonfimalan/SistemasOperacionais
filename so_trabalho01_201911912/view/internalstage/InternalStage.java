@@ -2,9 +2,10 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 18:12
- * Last update: 
- * Name: Principal.java
- * Function: the main class that loads the first Stage
+ * Last update: 22/07/2021 20:54
+ * Name: InternalStage.java
+ * Function: A stage that is used to open JavaFX apps inside this 
+ *    application
  *******************************************************************/
 package view.internalstage;
 

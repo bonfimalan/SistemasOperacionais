@@ -1,3 +1,11 @@
+/********************************************************************
+ * Author: Alan Bonfim Santos
+ * Registration: 201911912
+ * Initial date: 16/07/2021 15:33
+ * Last update: 22/07/2021 21:18
+ * Name: WorkAreaController.java
+ * Function: Controller to the work area
+*******************************************************************/
 package controller;
 
 import controller.events.workarea.WorkAreaIconOnMouseClicked;
@@ -26,7 +34,7 @@ public class WorkAreaController {
     gridSpaces = new boolean[xGridSize][yGridSize];
     for (boolean[] line : gridSpaces)
       for (int i = 0; i < line.length; i++)
-        line[i] = true;
+        line[i] = false;
   }
 
   public void onTopStage(InternalStage internalStage) {
@@ -62,7 +70,7 @@ public class WorkAreaController {
       // moving by column
       // j = column position
       for (int j = 0; j < gridColumnAmount; j++) {
-        if (isGridAreaOccupied(i, j)) {
+        if (!isGridAreaOccupied(i, j)) {
           icon.setLayoutX(i * GRID_AREA_SIZE);
           icon.setLayoutY(j * GRID_AREA_SIZE);
           occupyGridArea(i, j);
@@ -95,11 +103,11 @@ public class WorkAreaController {
   }
 
   public void occupyGridArea(int x, int y) {
-    gridSpaces[x][y] = false;
+    gridSpaces[x][y] = true;
   }
 
   public void freeGridArea(int x, int y) {
-    gridSpaces[x][y] = true;
+    gridSpaces[x][y] = false;
   }
 
   public void onIconPressed() {

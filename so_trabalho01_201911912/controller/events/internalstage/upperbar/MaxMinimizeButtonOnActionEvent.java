@@ -2,9 +2,11 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 18/07/2021 11:43
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 21:05
+ * Name: MaxMinimizeButtonOnActionEvent.java
+ * Function: Change the size of the internal stage when the button is
+ *    pressed, it will change the size to cover the area or toggle to
+ *    the previous size
  *******************************************************************/
 package controller.events.internalstage.upperbar;
 

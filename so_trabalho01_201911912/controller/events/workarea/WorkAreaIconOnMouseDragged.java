@@ -2,9 +2,10 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 15:03
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:57
+ * Name: WorkAreaIconOnMouseDragged.java
+ * Function: Handler that is called when a mouse drag event occurs,
+ *    this will handle the icon drag over screen
  *******************************************************************/
 package controller.events.workarea;
 

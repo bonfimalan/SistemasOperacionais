@@ -2,9 +2,10 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 17/07/2021 11:29
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 21:09
+ * Name: OnMouseDraggedEvent.java
+ * Function: Move the InternalStage in the desktop area, when the mouse
+ *    is dragged in the upperbar
  *******************************************************************/
 package controller.events.internalstage.upperbar;
 

@@ -2,9 +2,11 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 17/07/2021 13:14
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:37
+ * Name: ResizeOnMousePressed.java
+ * Function: Handler to the event that occurs when the mouse is pressed
+ *    this is used to difine what resize type will be used, depending
+ *    on the cursor mouse stored in the controller of the internal stage
  *******************************************************************/
 package controller.events.internalstage;
 
@@ -31,20 +33,27 @@ public class ResizeOnMousePressed implements EventHandler<MouseEvent> {
   }
 
   @Override
-  public void handle(MouseEvent event) {    
+  public void handle(MouseEvent event) {
     Controllers.workAreaController.savePreviousSize();
 
+    // get the position where the mouse was pressed
     previousX = event.getSceneX();
     previousY = event.getSceneY();
 
+    // used to calculate the new size
     previousWidth = internalStageController.getInternalStage().getWidth();
     previousHeight = internalStageController.getInternalStage().getHeight();
 
+    // it will get the current size of the Internal Stage, so it can be used
+    // in the resize events
     if(oneTime) {
       internalStageController.setRealMinWidth(previousWidth);
       internalStageController.setRealMinHeight(previousHeight);
+      oneTime = false;
     }
 
+    // takes the cursor type to difine what resize function will be added to the
+    // internal stage node
     switch (internalStageController.getResizeCursor().toString()) {
       case "N_RESIZE":
         addEventOnStage(nonImplementedHorizontalResize(), northResize());
@@ -87,16 +96,23 @@ public class ResizeOnMousePressed implements EventHandler<MouseEvent> {
 
   private HorizontalRisize westResize() {
     return (internalStage, mouseEvent) -> {
-      internalStage.setLayoutX(mouseEvent.getSceneX());
-      internalStage.setPrefWidth(previousWidth + previousX - mouseEvent.getSceneX());
+      // This just works, don't ask me why
+      // there's some visual bug, we just have to live with this kind of stuff
+      // this condition stop the resize, preventing the stage to start moving
+      if(internalStageController.getRealMinWidth() < internalStage.getWidth() || previousX - mouseEvent.getSceneX() > 0) {
+        internalStage.setLayoutX(mouseEvent.getSceneX());
+        internalStage.setPrefWidth(previousWidth + previousX - mouseEvent.getSceneX());
+      }
     };
   }
 
   private VerticalResize northResize() {
     return (internalStage, mouseEvent) -> {
-      // I had spend 1 hour in this
-      internalStage.setLayoutY(mouseEvent.getSceneY());
-      internalStage.setPrefHeight(previousHeight + previousY - mouseEvent.getSceneY());
+      if(internalStageController.getRealMinHeight() < internalStage.getHeight() || previousY - mouseEvent.getSceneY() > 0) {
+        // I had spend 1 hour in this
+        internalStage.setLayoutY(mouseEvent.getSceneY());
+        internalStage.setPrefHeight(previousHeight + previousY - mouseEvent.getSceneY());
+      }
     };
   }
 

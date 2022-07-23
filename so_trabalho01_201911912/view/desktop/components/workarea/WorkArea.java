@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 12:00
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:51
+ * Name: WorkArea.java
+ * Function: The desktop area for apps icons and internal stages
  *******************************************************************/
 package view.desktop.components.workarea;
 
@@ -31,6 +31,11 @@ public class WorkArea extends AnchorPane {
     super.getChildren().add(internalStage);
   }
 
+  /**
+   * Sets the internal stage on top
+   * 
+   * @param internalStage
+   */
   public void onTopStage(InternalStage internalStage) {
     super.getChildren().remove(internalStage);
     super.getChildren().add(internalStage);

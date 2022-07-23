@@ -2,9 +2,10 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 17/07/2021 19:44
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:47
+ * Name: ApplicationInfo.java
+ * Function: Stores information of a application. It's used to create
+ *    a app in the desktop and centralize information about a app
  *******************************************************************/
 package model;
 

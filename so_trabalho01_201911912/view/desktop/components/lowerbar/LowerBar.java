@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 11:58
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:50
+ * Name: LowerBar.java
+ * Function: A lower bar that is used to put app icons
  *******************************************************************/
 package view.desktop.components.lowerbar;
 

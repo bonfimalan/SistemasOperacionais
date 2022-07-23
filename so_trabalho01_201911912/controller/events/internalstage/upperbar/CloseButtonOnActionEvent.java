@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 18/07/2021 11:35
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 21:05
+ * Name: CloseButtonOnActionEvent.java
+ * Function: Closes the internal stage when the button is pressed
  *******************************************************************/
 package controller.events.internalstage.upperbar;
 

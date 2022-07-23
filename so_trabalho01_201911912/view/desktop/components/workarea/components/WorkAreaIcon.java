@@ -2,9 +2,9 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 12:18
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:53
+ * Name: WorkAreaIcon.java
+ * Function: Work area icon component class
  *******************************************************************/
 
 package view.desktop.components.workarea.components;
@@ -24,8 +24,6 @@ public class WorkAreaIcon extends VBox {
   private Label iconLabel;
 
   public WorkAreaIcon(String imagePath, String iconName) {
-    super.getStylesheets()
-        .forEach(string -> System.out.println(string));
     super.setPrefSize(100, 100);
     super.setAlignment(Pos.TOP_CENTER);
     

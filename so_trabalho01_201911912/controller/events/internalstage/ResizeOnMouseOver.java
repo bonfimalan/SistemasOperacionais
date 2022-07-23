@@ -2,9 +2,11 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 17/07/2021 12:19
- * Last update: 
- * Name: 
- * Function: 
+ * Last update: 22/07/2021 20:346
+ * Name: ResizeOnMouseOver.java
+ * Function: Handler to the event that occurs when the mouse is passed
+ *    over the node, this will set the cursor denpending in the area
+ *    it's in, to show what direction it can be resized if pressed and dragged.
  *******************************************************************/
 package controller.events.internalstage;
 

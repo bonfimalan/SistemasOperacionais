@@ -1,3 +1,11 @@
+/********************************************************************
+ * Author: Alan Bonfim Santos
+ * Registration: 201911912
+ * Initial date: 17/07/2021 19:34
+ * Last update: 22/07/2021 21:20
+ * Name: LowerBarApplicationButton.java
+ * Function: The button that is used in the lowerbar
+*******************************************************************/
 package view.desktop.components.lowerbar.components;
 
 import javafx.geometry.Pos;

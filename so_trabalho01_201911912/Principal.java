@@ -2,7 +2,7 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 11:00
- * Last update: 
+ * Last update: 22/07/2021 20:55
  * Name: Principal.java
  * Function: the main class that loads the first Stage
  *******************************************************************/
@@ -55,6 +55,8 @@ public class Principal extends Application {
     // adding the style sheets
     scene.getStylesheets().addAll(styles);
     
+
+    // adding two apps
     Manel manel = new Manel();
     Controllers.desktopController.addApp(manel);
 
