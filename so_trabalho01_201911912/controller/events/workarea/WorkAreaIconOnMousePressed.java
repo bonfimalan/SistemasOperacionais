@@ -2,7 +2,7 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 14:58
- * Last update: 22/07/2021 20:30
+ * Last update: 26/07/2021 15:30
  * Name: WorkAreaIconOnMousePressed.java
  * Function: Handles the event that occur when the mouse is pressed in
  *    the icon, it's used to get some information to the drag event
@@ -32,12 +32,12 @@ public class WorkAreaIconOnMousePressed implements EventHandler<MouseEvent>  {
     Controllers.workAreaController.setMovingIconPreviousY(icon.getLayoutY());
     Controllers.workAreaController.onIconPressed();
 
-    int gridXPosition = (int) icon.getLayoutX();
-    int gridYPosition = (int) icon.getLayoutY();
+    // int gridXPosition = (int) icon.getLayoutX();
+    // int gridYPosition = (int) icon.getLayoutY();
 
-    gridXPosition /= GRID_SIZE;
-    gridYPosition /= GRID_SIZE;
+    // gridXPosition /= GRID_SIZE;
+    // gridYPosition /= GRID_SIZE;
     
-    Controllers.workAreaController.freeGridArea(gridXPosition, gridYPosition);
+    // Controllers.workAreaController.freeGridArea(gridXPosition, gridYPosition);
   }
 }
