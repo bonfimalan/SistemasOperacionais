@@ -2,13 +2,14 @@
  * Author: Alan Bonfim Santos
  * Registration: 201911912
  * Initial date: 16/07/2021 15:33
- * Last update: 22/07/2021 21:18
+ * Last update: 26/07/2021 15:29
  * Name: WorkAreaController.java
  * Function: Controller to the work area
 *******************************************************************/
 package controller;
 
 import controller.events.workarea.WorkAreaIconOnMouseClicked;
+import javafx.scene.Node;
 import model.ApplicationInfo;
 import view.desktop.components.workarea.WorkArea;
 import view.desktop.components.workarea.components.WorkAreaIcon;
@@ -20,6 +21,8 @@ public class WorkAreaController {
   private double movingIconPreviousY;
   private double previousWidth;
   private double previousHeight;
+
+  @Deprecated
   private boolean[][] gridSpaces;
 
   private InternalStage stageOnTop = null;
@@ -29,12 +32,14 @@ public class WorkAreaController {
   public WorkAreaController(WorkArea workArea, int xGridSize, int yGridSize) {
     xGridSize /= 100;
     yGridSize /= 100;
-
+    
     this.workArea = workArea;
+    /*
     gridSpaces = new boolean[xGridSize][yGridSize];
     for (boolean[] line : gridSpaces)
       for (int i = 0; i < line.length; i++)
         line[i] = false;
+    */
   }
 
   public void onTopStage(InternalStage internalStage) {
@@ -60,6 +65,7 @@ public class WorkAreaController {
     workArea.addWorkAreaIcon(icon);
   }
 
+  @Deprecated
   private void setIconPosition(WorkAreaIcon icon) {
     int gridLineAmount = (int) workArea.getWidth() / 100;
     int gridColumnAmount = (int) workArea.getHeight() / 100;
@@ -73,7 +79,7 @@ public class WorkAreaController {
         if (!isGridAreaOccupied(i, j)) {
           icon.setLayoutX(i * GRID_AREA_SIZE);
           icon.setLayoutY(j * GRID_AREA_SIZE);
-          occupyGridArea(i, j);
+          // occupyGridArea(i, j);
           return;
         }
       }
@@ -99,13 +105,27 @@ public class WorkAreaController {
   }
 
   public boolean isGridAreaOccupied(int x, int y) {
+    int xPosition = x * 100;
+    int yPosition = y * 100;
+    for (Node child : workArea.getChildren()) {
+      if(child instanceof WorkAreaIcon && child.getLayoutX() == xPosition && child.getLayoutY() == yPosition) 
+        return true;
+    }
+
+    return false;
+  }
+
+  @Deprecated
+  public boolean isGridAreaOccupied(int x, int y, boolean a) {
     return gridSpaces[x][y];
   }
 
+  @Deprecated
   public void occupyGridArea(int x, int y) {
     gridSpaces[x][y] = true;
   }
 
+  @Deprecated
   public void freeGridArea(int x, int y) {
     gridSpaces[x][y] = false;
   }

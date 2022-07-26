@@ -1,7 +1,7 @@
 /********************************************************************
  * Author: Alan Bonfim Santos
  * Registration: 201911912
- * Initial date: 16/07/2021 14:58
+ * Initial date: 26/07/2021 15:35
  * Last update: 22/07/2021 20:59
  * Name: WorkAreaIconOnMouseReleased.java
  * Function: Calculates the positoin in whit the icon must be put,
@@ -38,21 +38,23 @@ public class WorkAreaIconOnMouseReleased implements EventHandler<MouseEvent> {
     double mouseY = gridYPosition * GRID_SIZE;
     
     // verifies if it can stay at tha place
-    try{
-      if (mouseX < Controllers.workAreaController.getPreviousWidth()
+    // try{
+      if (!Controllers.workAreaController.isGridAreaOccupied(gridXPosition, gridYPosition)
+          && mouseX < Controllers.workAreaController.getPreviousWidth()
+          && mouseX >= 0
           && mouseY < Controllers.workAreaController.getPreviousHeight() - 100
-          && !Controllers.workAreaController.isGridAreaOccupied(gridXPosition, gridYPosition)) {
+          && mouseY >= 0) {
         
         icon.setLayoutX(mouseX);
         icon.setLayoutY(mouseY);
-        Controllers.workAreaController.occupyGridArea(gridXPosition, gridYPosition);
+        // Controllers.workAreaController.occupyGridArea(gridXPosition, gridYPosition);
       }
       else {
         Controllers.workAreaController.resetIconPosition(icon);
       }
-    } catch(ArrayIndexOutOfBoundsException e) {
-      Controllers.workAreaController.resetIconPosition(icon);
-    }
+    //} catch(ArrayIndexOutOfBoundsException e) {
+      //Controllers.workAreaController.resetIconPosition(icon);
+    // }
 
   }
 }
