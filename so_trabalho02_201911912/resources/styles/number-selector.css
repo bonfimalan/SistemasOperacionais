@@ -1,0 +1,17 @@
+NumberSelector #up-button {
+  -fx-background-image: url("/resources/img/icon/up-arrow.png");
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat no-repeat;
+  -fx-background-size: stretch stretch;
+}
+
+NumberSelector #down-button {
+  -fx-background-image: url("/resources/img/icon/down-arrow.png");
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat no-repeat;
+  -fx-background-size: stretch stretch;
+}
+
+NumberSelector .label {
+  -fx-alignment: center;
+}
