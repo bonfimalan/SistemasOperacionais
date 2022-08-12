@@ -1,12 +1,11 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import view.components.NumberSelector;
+import view.MainView;
 
 public class Principal extends Application {
   private static final String[] STYLES = {
-    "/resources/styles/number-selector.css"
+    "/resources/styles/styles.css"
   };
 
   public static void main(String[] args) {
@@ -15,9 +14,8 @@ public class Principal extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    VBox parent = new VBox();
-    parent.getChildren().addAll(new NumberSelector(2, 15));
-    Scene scene = new Scene(parent);
+    MainView root = new MainView();
+    Scene scene = new Scene(root);
 
     scene.getStylesheets().addAll(STYLES);
 
