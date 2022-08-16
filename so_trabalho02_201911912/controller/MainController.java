@@ -23,7 +23,6 @@ public class MainController implements MainControllerInterface {
   private BCP runningProcess;
   private ScaleAlgorithm algorithm;
   private List<BCP> blockedProcessList;
-  private List<BlockedLoop> blockedLoops;
   private ComboBox<String> algComboBox;
   // this can be between 1 and 3
   private char selectedAlg = '1'; // FIFO is default
@@ -97,9 +96,8 @@ public class MainController implements MainControllerInterface {
   public void reset() {
     mainView.resetGui();
     loop.interrupt();
-    //for (BlockedLoop bLoop : blockedLoops)
-      //bLoop.interrupt();
     blockedProcessList.clear();
+    BCP.resetCount();
   }
 
   @Override

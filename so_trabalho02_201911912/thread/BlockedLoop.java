@@ -1,5 +1,7 @@
 package thread;
 
+import java.util.List;
+
 import global.Variables;
 import interfaces.MainControllerInterface;
 import javafx.application.Platform;
@@ -7,6 +9,7 @@ import model.BCP;
 
 public class BlockedLoop extends Thread {
   private MainControllerInterface controller;
+  private List<BCP> blockedProcessListReference;
 
   public BlockedLoop(MainControllerInterface controller) {
     this.controller = controller;
@@ -15,10 +18,11 @@ public class BlockedLoop extends Thread {
   @Override
   public void run() {
     try {
+      blockedProcessListReference = controller.getBlockedProcessList();
       while(true) {
         sleep(10);
-        while(!controller.getBlockedProcessList().isEmpty()) {
-          for(BCP process : controller.getBlockedProcessList()){
+        while(!blockedProcessListReference.isEmpty()) {
+          for(BCP process : blockedProcessListReference){
             //Variables.MUTEX.acquire();
             Platform.runLater(() -> {
               controller.runBlockedTime(process);

@@ -1,6 +1,5 @@
 package thread;
 
-import java.util.List;
 import java.util.Random;
 
 import global.Variables;
@@ -16,7 +15,6 @@ public class RunLoop extends Thread {
   private MainControllerInterface controller;
   private Random random;
   private boolean canGoBack = true;
-  private List<BCP> blockedProcessListReference;
 
   public RunLoop(ScaleAlgorithm algorithm, MainControllerInterface controller) {
     this.algorithm = algorithm;
@@ -27,27 +25,12 @@ public class RunLoop extends Thread {
   @Override
   public void run() {
     try {
-      blockedProcessListReference = controller.getBlockedProcessList();
       while (true) {
         timeSlice = Variables.timeSlice;
         BCP process = algorithm.getNext();
         // it will be here if the alg doesn't have process
         if (process == null) {
-          // executing the time of the blocked process
-            //List<BCP> list = controller.getBlockedProcessList();
-            /* 
-            if(!blockedProcessListReference.isEmpty()){
-              sleepOneSecondWithSpeed();
-              //Variables.MUTEX.acquire();
-              for(BCP bcp : blockedProcessListReference) {
-                Platform.runLater(() -> controller.runBlockedTime(bcp));
-                //Variables.MUTEX.release();
-              }
-            }
-            //else 
-            { sleep(10);}
-            */
-            sleep(10);
+          sleep(10);
         } 
         else {
           System.out.println(process.getName());
@@ -67,21 +50,7 @@ public class RunLoop extends Thread {
             Platform.runLater(() -> {
               controller.runProcess();
               //Variables.MUTEX.release();
-            });
-
-            // executing the time of the blocked process
-            //List<BCP> list = controller.getBlockedProcessList();
-            /*
-            if(!blockedProcessListReference.isEmpty())
-              for(BCP bcp : blockedProcessListReference) {
-                //Variables.MUTEX.acquire();
-                Platform.runLater(() -> {
-                  controller.runBlockedTime(bcp);
-                  //Variables.MUTEX.release();
-                });
-              }
-              */
-            
+            });            
 
             // the process is finished
             if (controller.getRunningProcessTime() == 0) {

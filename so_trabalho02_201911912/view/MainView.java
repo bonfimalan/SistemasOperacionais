@@ -30,7 +30,7 @@ public class MainView extends VBox {
   public static final double MENU_HEIGHT = 50.0;
 
   public MainView() {
-    super.setPrefSize(500, 400);
+    super.setPrefSize(800, 600);
     // process area
     ready = new ProcessArea();
     ready.setAreaInfo(new ProcessAreaReadyUpperBar("READY"));
