@@ -9,7 +9,6 @@ import algorithms.SJF;
 import global.Variables;
 import interfaces.MainControllerInterface;
 import interfaces.ScaleAlgorithm;
-import javafx.application.Platform;
 import javafx.scene.control.ComboBox;
 import model.BCP;
 import thread.BlockedLoop;
@@ -32,7 +31,7 @@ public class MainController implements MainControllerInterface {
   public MainController(MainView mainView) {
     algorithm = new FIFO();
     this.loop = new RunLoop(algorithm, this);
-    //this.blockedLoop = new BlockedLoop(this);
+    this.blockedLoop = new BlockedLoop(this);
     this.mainView = mainView;
     this.blockedProcessList = new ArrayList<>();
     //this.blockedLoops = new ArrayList<>();
@@ -42,12 +41,12 @@ public class MainController implements MainControllerInterface {
     configApplyAlgActionEvent();
 
     loop.start();
-    //blockedLoop.start();
+    blockedLoop.start();
   }
 
   public void onClose() {
     loop.interrupt();
-    //blockedLoop.interrupt();
+    blockedLoop.interrupt();
   }
 
   private void configAddProcessActionEvent() {

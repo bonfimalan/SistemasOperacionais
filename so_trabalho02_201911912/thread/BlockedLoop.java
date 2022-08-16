@@ -19,10 +19,10 @@ public class BlockedLoop extends Thread {
         sleep(10);
         while(!controller.getBlockedProcessList().isEmpty()) {
           for(BCP process : controller.getBlockedProcessList()){
-            Variables.MUTEX.acquire();
+            //Variables.MUTEX.acquire();
             Platform.runLater(() -> {
               controller.runBlockedTime(process);
-              Variables.MUTEX.release();
+              //Variables.MUTEX.release();
             });
           }
 

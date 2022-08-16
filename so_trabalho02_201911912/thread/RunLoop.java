@@ -35,6 +35,7 @@ public class RunLoop extends Thread {
         if (process == null) {
           // executing the time of the blocked process
             //List<BCP> list = controller.getBlockedProcessList();
+            /* 
             if(!blockedProcessListReference.isEmpty()){
               sleepOneSecondWithSpeed();
               //Variables.MUTEX.acquire();
@@ -45,9 +46,11 @@ public class RunLoop extends Thread {
             }
             //else 
             { sleep(10);}
+            */
+            sleep(10);
         } 
         else {
-          //System.out.println(process.getName());
+          System.out.println(process.getName());
 
           //Variables.MUTEX.acquire();
           Platform.runLater(() -> {
@@ -68,6 +71,7 @@ public class RunLoop extends Thread {
 
             // executing the time of the blocked process
             //List<BCP> list = controller.getBlockedProcessList();
+            /*
             if(!blockedProcessListReference.isEmpty())
               for(BCP bcp : blockedProcessListReference) {
                 //Variables.MUTEX.acquire();
@@ -76,6 +80,7 @@ public class RunLoop extends Thread {
                   //Variables.MUTEX.release();
                 });
               }
+              */
             
 
             // the process is finished
