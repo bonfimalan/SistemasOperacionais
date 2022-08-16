@@ -21,6 +21,14 @@ public class BCP {
     this.deadLine = deadLine;
   }
 
+  public void run() {
+    time--;
+  }
+
+  public void runBlocked() {
+    timeBlocked--;
+  }
+
   public static void resetCount() {
     count = 0;
   }

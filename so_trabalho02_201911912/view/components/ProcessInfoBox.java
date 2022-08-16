@@ -25,7 +25,7 @@ public class ProcessInfoBox extends VBox {
     this.identifier = id;
     nameLabel = new Label(name);
     timeLabel = new Label("Time " + time + "s");
-    priorityLabel = new Label("Priority " + priority + "s");
+    priorityLabel = new Label("Priority " + priority);
     addChildren(nameLabel, timeLabel, priorityLabel);
   }
 
@@ -33,9 +33,10 @@ public class ProcessInfoBox extends VBox {
     this.identifier = id;
     nameLabel = new Label(name);
     timeLabel = new Label("Time " + time + "s");
-    priorityLabel = new Label("Priority " + priority + "s");
+    // there's no priority in the deadline alg
+    // priorityLabel = new Label("Priority " + priority + "s");
     deadLineLabel = new Label("Deadline " + deadLine + "s");
-    addChildren(nameLabel, timeLabel, priorityLabel, deadLineLabel);
+    addChildren(nameLabel, timeLabel, deadLineLabel);
   }
 
   public void processRunCountDown(int time) {

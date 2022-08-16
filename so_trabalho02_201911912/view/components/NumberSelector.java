@@ -7,11 +7,12 @@ import javafx.scene.layout.HBox;
 public class NumberSelector extends HBox {
   private Slider slider;
   private Label number;
-  private static final Label SECOND_LABEL = new Label("s"); 
+  private Label unitLibel; 
 
   private int value;
 
-  public NumberSelector(int minValue, int maxValue) {
+  public NumberSelector(int minValue, int maxValue, String unitType) {
+    unitLibel = new Label(unitType);
     slider = new Slider(minValue, maxValue, minValue);
     number = new Label(String.valueOf(minValue));
     slider.valueProperty().addListener(
@@ -20,6 +21,10 @@ public class NumberSelector extends HBox {
         number.setText(String.valueOf(value));
       });
 
-    super.getChildren().addAll(slider, number, SECOND_LABEL);
+    super.getChildren().addAll(slider, number, unitLibel);
+  }
+
+  public Slider getSlider() {
+    return slider;
   }
 }

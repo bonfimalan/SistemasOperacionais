@@ -30,4 +30,12 @@ public class ProcessAreaIntervalUpperBar extends VBox {
     stateLabel = new Label(state);
     super.getChildren().addAll(stateLabel, intervalContainer);
   }
+
+  public TextField getMin() {
+    return min;
+  }
+
+  public TextField getMax() {
+    return max;
+  }  
 }

@@ -1,7 +1,6 @@
 package view.components;
 
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
@@ -31,6 +30,7 @@ public class ProcessArea extends ScrollPane {
 
   public ProcessInfoBox removeProcessById(int id) {
     ProcessInfoBox processInfoBox;
+    
     for(Node node : processArea.getChildren()) {
       if (node instanceof ProcessInfoBox) {
         processInfoBox = (ProcessInfoBox) node;
@@ -58,8 +58,12 @@ public class ProcessArea extends ScrollPane {
   }
 
   // used in the running, that will have only one process
-  public ProcessInfoBox removeFirst () {
+  public ProcessInfoBox removeFirst() {
     return (ProcessInfoBox) processArea.getChildren().remove(0);
+  }
+
+  public ProcessInfoBox getFirst() {
+    return (ProcessInfoBox) processArea.getChildren().get(0);
   }
 
   public void removeAllProcess() {
@@ -68,5 +72,9 @@ public class ProcessArea extends ScrollPane {
 
   public VBox getAreaInfo() {
     return areaInfo;
+  }
+
+  public VBox getProcessArea() {
+    return processArea;
   }
 }
