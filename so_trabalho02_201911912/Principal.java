@@ -1,3 +1,11 @@
+/********************************************************************
+ * Author: Alan Bonfim Santos
+ * Registration: 201911912
+ * Initial date: 11/08/2021 16:34
+ * Last update: 13/08/2021 22:22
+ * Name: Principal.java
+ * Function: the main class that loads the first Stage
+ *******************************************************************/
 import controller.MainController;
 import javafx.application.Application;
 import javafx.scene.Scene;
