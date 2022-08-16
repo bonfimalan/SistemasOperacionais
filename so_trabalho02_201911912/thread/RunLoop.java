@@ -37,8 +37,10 @@ public class RunLoop extends Thread {
             //List<BCP> list = controller.getBlockedProcessList();
             if(!blockedProcessListReference.isEmpty()){
               sleepOneSecondWithSpeed();
+              //Variables.MUTEX.acquire();
               for(BCP bcp : blockedProcessListReference) {
                 Platform.runLater(() -> controller.runBlockedTime(bcp));
+                //Variables.MUTEX.release();
               }
             }
             //else 
@@ -47,48 +49,42 @@ public class RunLoop extends Thread {
         else {
           //System.out.println(process.getName());
 
-          Variables.MUTEX.acquire();
+          //Variables.MUTEX.acquire();
           Platform.runLater(() -> {
             controller.moveToRunning(process.getId());
             controller.setRunningProcess(process);
-            Variables.MUTEX.release();
+            //Variables.MUTEX.release();
           });
 
           while (timeSlice != 0) {
             sleepOneSecondWithSpeed();
 
             timeSlice--;
-            Variables.MUTEX.acquire();
+            //Variables.MUTEX.acquire();
             Platform.runLater(() -> {
               controller.runProcess();
-              Variables.MUTEX.release();
+              //Variables.MUTEX.release();
             });
-            Variables.MUTEX.acquire();
-            Variables.MUTEX.release();
 
             // executing the time of the blocked process
             //List<BCP> list = controller.getBlockedProcessList();
             if(!blockedProcessListReference.isEmpty())
               for(BCP bcp : blockedProcessListReference) {
-                Variables.MUTEX.acquire();
+                //Variables.MUTEX.acquire();
                 Platform.runLater(() -> {
                   controller.runBlockedTime(bcp);
-                  Variables.MUTEX.release();}
-                );
+                  //Variables.MUTEX.release();
+                });
               }
-            Variables.MUTEX.acquire();
-            Variables.MUTEX.release();
             
 
             // the process is finished
             if (controller.getRunningProcessTime() == 0) {
-              Variables.MUTEX.acquire();
+              //Variables.MUTEX.acquire();
               Platform.runLater(() -> {
                 controller.moveToDone();
-                Variables.MUTEX.release();
+                //Variables.MUTEX.release();
               });
-              Variables.MUTEX.acquire();
-              Variables.MUTEX.release();
               canGoBack = false;
               break;
             }
@@ -97,24 +93,21 @@ public class RunLoop extends Thread {
             // generates a number between 1 and 100
             randomNumber = random.nextInt(100) + 1;
             if (randomNumber <= Variables.blockPercentage && timeSlice > 0) {
-              Variables.MUTEX.acquire();
+              //Variables.MUTEX.acquire();
               Platform.runLater(() -> {
                 controller.moveToBlocked();
-                Variables.MUTEX.release();
+                //Variables.MUTEX.release();
               });
-              Variables.MUTEX.acquire();
-              Variables.MUTEX.release();
               canGoBack = false;
+              break;
             }
           } // end time slice while
           if(canGoBack) {
-            Variables.MUTEX.acquire();
+            //Variables.MUTEX.acquire();
             Platform.runLater(() -> {
               controller.moveFromRunningToReady();
-              Variables.MUTEX.release();
+              //Variables.MUTEX.release();
             });
-            Variables.MUTEX.acquire();
-            Variables.MUTEX.release();
             // the thread needs to wait since the javafx will put the process back
             // in the data struct later
             sleep(20);
