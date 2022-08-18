@@ -1,0 +1,56 @@
+ProcessInfoBox {
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-color: black;
+}
+* {
+  -fx-blue: rgb(76, 0, 255);
+  -fx-blue-darker: rgb(49, 0, 165);
+  -fx-red: rgb(255, 0, 0);
+  -fx-red-darker: rgb(200, 0, 0);
+}
+
+MainViewDownMenu, MainViewUpperMenu, ProcessArea, ProcessInfoBox {
+  -fx-background-color: white;
+}
+
+.scroll-pane {
+  -fx-background-color: white;
+}
+
+.button {
+  -fx-background-color: white;
+  -fx-border-color: -fx-blue;
+  -fx-border-width: 1px;
+  -fx-border-radius: 20px;
+  -fx-background-radius: 20px;
+  -fx-text-fill: -fx-blue;
+}
+
+.button:hover {
+  -fx-background-color: -fx-blue;
+  -fx-text-fill: white;
+}
+
+.button:pressed {
+  -fx-background-color: -fx-blue-darker;
+  -fx-border-color: -fx-blue-darker;
+  -fx-text-fill: white;
+}
+
+#add-process-button {
+  -fx-background-color: white;
+  -fx-border-color: -fx-red;
+  -fx-text-fill: -fx-red;
+}
+
+#add-process-button:hover {
+  -fx-background-color: -fx-red;
+  -fx-text-fill: white;
+}
+
+#add-process-button:pressed {
+  -fx-background-color: -fx-red-darker;
+  -fx-border-color: -fx-red-darker;
+  -fx-text-fill: white;
+}
