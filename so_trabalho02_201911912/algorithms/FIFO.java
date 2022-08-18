@@ -28,4 +28,9 @@ public class FIFO implements ScaleAlgorithm {
   public void removeProcess() {
     
   }
+
+  @Override
+  public void returnProcess(BCP process) {
+    processQueue.addFirst(process);
+  }
 }

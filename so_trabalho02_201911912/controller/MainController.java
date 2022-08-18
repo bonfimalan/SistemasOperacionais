@@ -135,7 +135,7 @@ public class MainController implements MainControllerInterface {
 
   @Override
   public void moveFromRunningToReady() {
-    algorithm.addProcess(runningProcess);
+    algorithm.returnProcess(runningProcess);
     mainView.backFromRunningToReady();
   }
 

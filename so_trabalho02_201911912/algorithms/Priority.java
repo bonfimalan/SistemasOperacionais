@@ -44,4 +44,9 @@ public class Priority implements ScaleAlgorithm {
 
   }
 
+  @Override
+  public void returnProcess(BCP process) {
+    processList.add(0, process);
+  }
+
 }

@@ -12,6 +12,7 @@ public class SJF implements ScaleAlgorithm{
   public SJF() {
     processList = new ArrayList<>();
   }
+
   @Override
   public BCP getNext() {
     if(processList.isEmpty()) return null;
@@ -34,5 +35,9 @@ public class SJF implements ScaleAlgorithm{
   public void removeProcess() {
     
   }
-  
+
+  @Override
+  public void returnProcess(BCP process) {
+    processList.add(0, process);
+  }
 }
