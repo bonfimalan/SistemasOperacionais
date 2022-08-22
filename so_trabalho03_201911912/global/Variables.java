@@ -44,4 +44,7 @@ public class Variables {
     "4 - Round Robin",
     "5 - Multiple Queue"
   };
+
+  // timer
+  public static int timer = 0;
 }

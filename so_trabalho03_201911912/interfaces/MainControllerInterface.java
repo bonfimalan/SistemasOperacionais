@@ -17,4 +17,5 @@ public interface MainControllerInterface {
   public void runBlockedTime(BCP blocked);
   public void blockProcess();
   public List<BCP> getBlockedProcessList();
+  public void updateTimer();
 }

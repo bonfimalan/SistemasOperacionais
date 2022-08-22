@@ -144,4 +144,8 @@ public class MainView extends VBox {
 
     done.addProcess(infoBox);
   }
+
+  public void updateTimer() {
+    upperMenu.updateTimer();
+  }
 }

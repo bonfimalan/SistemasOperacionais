@@ -15,12 +15,14 @@ import javafx.scene.control.ComboBox;
 import model.BCP;
 import thread.BlockedLoop;
 import thread.RunLoop;
+import thread.TimerLoop;
 import util.Util;
 import view.MainView;
 
 public class MainController implements MainControllerInterface {
   private RunLoop loop;
   private BlockedLoop blockedLoop;
+  private TimerLoop timerLoop;
   private MainView mainView;
   private BCP runningProcess;
   private ScaleAlgorithm algorithm;
@@ -31,8 +33,6 @@ public class MainController implements MainControllerInterface {
 
   public MainController(MainView mainView) {
     algorithm = new FIFO();
-    this.loop = new RunLoop(algorithm, this);
-    this.blockedLoop = new BlockedLoop(this);
     this.mainView = mainView;
     this.blockedProcessList = new ArrayList<>();
     //this.blockedLoops = new ArrayList<>();
@@ -41,13 +41,20 @@ public class MainController implements MainControllerInterface {
     configAddProcessActionEvent();
     configApplyAlgActionEvent();
 
+    // loops
+    this.loop = new RunLoop(algorithm, this);
+    this.blockedLoop = new BlockedLoop(this);
+    this.timerLoop = new TimerLoop(this);
+
     loop.start();
     blockedLoop.start();
+    timerLoop.start();
   }
 
   public void onClose() {
     loop.interrupt();
     blockedLoop.interrupt();
+    timerLoop.interrupt();
   }
 
   private void configAddProcessActionEvent() {
@@ -79,6 +86,10 @@ public class MainController implements MainControllerInterface {
       selectedAlg = algComboBox.getSelectionModel().getSelectedItem().charAt(0);
       // reseting
       reset();
+
+      // restartin the timer looping
+      timerLoop = new TimerLoop(this);
+      timerLoop.start();
 
       switch (selectedAlg) {
         case '1': // FIFO
@@ -114,6 +125,7 @@ public class MainController implements MainControllerInterface {
   public void reset() {
     mainView.resetGui();
     loop.interrupt();
+    timerLoop.interrupt();
     blockedProcessList.clear();
     BCP.resetCount();
   }
@@ -197,5 +209,10 @@ public class MainController implements MainControllerInterface {
     //BlockedLoop blockedLoop = new BlockedLoop(this, blockedProcess);
     //blockedLoops.add(blockedLoop);
     //blockedLoop.start();
+  }
+
+  @Override
+  public void updateTimer() {
+    mainView.updateTimer();
   }
 }
