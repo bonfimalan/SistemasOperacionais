@@ -15,8 +15,7 @@ public class Util {
     int priority = generateRandomNumber(Variables.higherPriority, Variables.lowerPriority);
     boolean blocked = false;
     int timeBlocked = 0;
-    int deadLine = 0; // not used yet
-    BCP bcp = new BCP(time, priority, blocked, timeBlocked, deadLine);
+    BCP bcp = new BCP(time, priority, blocked, timeBlocked);
     return bcp;
   }
 

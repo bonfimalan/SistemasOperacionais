@@ -2,7 +2,9 @@ package interfaces;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import model.BCP;
+import view.components.ProcessInfoBox;
 
 public interface MainControllerInterface {
   public void reset();
@@ -18,4 +20,5 @@ public interface MainControllerInterface {
   public void blockProcess();
   public List<BCP> getBlockedProcessList();
   public void updateTimer();
+  public ObservableList<ProcessInfoBox> getProcessBoxes();
 }

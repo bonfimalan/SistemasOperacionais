@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import algorithms.FIFO;
+import algorithms.Garanteed;
 import algorithms.MultipleQueue;
 import algorithms.Priority;
 import algorithms.RoundRobin;
@@ -11,6 +12,7 @@ import algorithms.SJF;
 import global.Variables;
 import interfaces.MainControllerInterface;
 import interfaces.ScaleAlgorithm;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import model.BCP;
 import thread.BlockedLoop;
@@ -18,6 +20,7 @@ import thread.RunLoop;
 import thread.TimerLoop;
 import util.Util;
 import view.MainView;
+import view.components.ProcessInfoBox;
 
 public class MainController implements MainControllerInterface {
   private RunLoop loop;
@@ -77,6 +80,8 @@ public class MainController implements MainControllerInterface {
         case '5': // Multiple Queue
           mainView.addReadyProcess(Util.generateProcessInfoBoxWithPriority(process));
           break;
+        case '6':
+        mainView.addReadyProcess(Util.generateProcessInfoBoxWithDeadLine(process));
       }
     });
   }
@@ -117,6 +122,10 @@ public class MainController implements MainControllerInterface {
           this.loop = new RunLoop(algorithm, this);
           this.loop.start();
           break;
+        case '6': // Garanteed
+          algorithm = new Garanteed(this);
+          this.loop = new RunLoop(algorithm, this);
+          this.loop.start();
       }
     });
   }
@@ -215,4 +224,9 @@ public class MainController implements MainControllerInterface {
   public void updateTimer() {
     mainView.updateTimer();
   }
+
+  @Override
+  public ObservableList<ProcessInfoBox> getProcessBoxes() {
+    return mainView.getReadyProcessBoxes();
+  }  
 }

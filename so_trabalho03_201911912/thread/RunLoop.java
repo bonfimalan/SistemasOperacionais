@@ -86,6 +86,7 @@ public class RunLoop extends Thread {
             // in the data struct later
             sleep(20);
           }
+          Variables.remainingTimeSlice = timeSlice;
           canGoBack = true;
         } // end else
       }// end while

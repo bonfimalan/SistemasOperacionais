@@ -10,6 +10,7 @@ public class Variables {
   // time slice
   public static final int TIME_SLICE_MIN_VALUE = 2;
   public static int timeSlice = TIME_SLICE_MIN_VALUE;
+  public static int remainingTimeSlice;
 
   // block interval and percentage value
   public static int blockedMinSeconds = 2;
@@ -42,7 +43,8 @@ public class Variables {
     "2 - Priority",
     "3 - Shortest Job First",
     "4 - Round Robin",
-    "5 - Multiple Queue"
+    "5 - Multiple Queue",
+    "6 - Garanteed"
   };
 
   // timer

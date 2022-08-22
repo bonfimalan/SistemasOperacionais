@@ -2,6 +2,9 @@ package view.components;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ProcessInfoBox extends VBox {
@@ -10,6 +13,7 @@ public class ProcessInfoBox extends VBox {
   private Label priorityLabel;
   private Label deadLineLabel;
   private Label blockedTimeLabel = new Label();
+  private Label createdTimLabel;
   // used to remove or chose a process to show in the view
   // this is the link between a process and it info box
   private int identifier; 
@@ -30,14 +34,25 @@ public class ProcessInfoBox extends VBox {
   }
 
   // create a process box with the time created and the deadline
-  public ProcessInfoBox (int id, String name, int time, int timeCreadted, int deadLine) {
+  public ProcessInfoBox (int id, String name, int time, int timeCreated, int deadLine) {
     this.identifier = id;
     nameLabel = new Label(name);
     timeLabel = new Label("Time " + time + "s");
     // there's no priority in the deadline alg
     // priorityLabel = new Label("Priority " + priority + "s");
+    createdTimLabel = new Label("Created in " + timeCreated + "s");
     deadLineLabel = new Label("Deadline " + deadLine + "s");
-    addChildren(nameLabel, timeLabel, deadLineLabel);
+    addChildren(nameLabel, timeLabel, createdTimLabel, deadLineLabel);
+  }
+
+  public void kill() {
+    HBox container = new HBox(
+      new Label("DEAD  "),
+      new ImageView(
+        new Image("/resources/img/lapideComVegetacao.png")
+      )
+    );
+    addChildren(container);
   }
 
   public void processRunCountDown(int time) {

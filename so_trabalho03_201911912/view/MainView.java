@@ -1,8 +1,11 @@
 package view;
 
 import global.Variables;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -143,6 +146,15 @@ public class MainView extends VBox {
       return;
 
     done.addProcess(infoBox);
+  }
+
+  public ObservableList<ProcessInfoBox> getReadyProcessBoxes() {
+    ObservableList<ProcessInfoBox> boxes = FXCollections.observableArrayList();
+    for(Node process : ready.getProcessArea().getChildren()) {
+      boxes.add((ProcessInfoBox) process);
+    }
+
+    return boxes;
   }
 
   public void updateTimer() {

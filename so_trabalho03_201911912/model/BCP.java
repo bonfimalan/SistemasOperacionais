@@ -11,10 +11,10 @@ public class BCP {
   private int deadLine;
   private int id;
   private int timeCreated;
-
+  private boolean dead;
   private static int count = 0;
   
-  public BCP(int time, int priority, boolean blocked, int timeBlocked, int deadLine) {
+  public BCP(int time, int priority, boolean blocked, int timeBlocked) {
     this.id = count;
     this.name = "Process " + count;
     count++;
@@ -22,8 +22,8 @@ public class BCP {
     this.priority = priority;
     this.blocked = blocked;
     this.timeBlocked = timeBlocked;
-    this.deadLine = deadLine;
     this.timeCreated = Variables.timer;
+    this.dead = false;
   }
 
   public void run() {
@@ -96,5 +96,13 @@ public class BCP {
 
   public void setTimeCreated(int timeCreated) {
     this.timeCreated = timeCreated;
+  }
+
+  public boolean isDead() {
+    return dead;
+  }
+
+  public void setDead(boolean dead) {
+    this.dead = dead;
   }
 }
