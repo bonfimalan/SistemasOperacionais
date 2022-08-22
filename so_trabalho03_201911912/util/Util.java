@@ -28,6 +28,10 @@ public class Util {
     return new ProcessInfoBox(bcp.getId(), bcp.getName(), bcp.getTime(), bcp.getPriority());
   }
 
+  public static ProcessInfoBox generateProcessInfoBoxWithDeadLine(BCP bcp) {
+    return new ProcessInfoBox(bcp.getId(), bcp.getName(), bcp.getTime(), bcp.getTimeCreated(), bcp.getDeadLine());
+  }
+
   public static int generateRandomNumber(int min, int max) {
     // generates a number between max + 1 and min
     max++;

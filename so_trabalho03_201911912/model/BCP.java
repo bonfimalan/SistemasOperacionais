@@ -1,5 +1,7 @@
 package model;
 
+import global.Variables;
+
 public class BCP {
   private String name;
   private int time;
@@ -8,6 +10,8 @@ public class BCP {
   private int timeBlocked;
   private int deadLine;
   private int id;
+  private int timeCreated;
+
   private static int count = 0;
   
   public BCP(int time, int priority, boolean blocked, int timeBlocked, int deadLine) {
@@ -19,6 +23,7 @@ public class BCP {
     this.blocked = blocked;
     this.timeBlocked = timeBlocked;
     this.deadLine = deadLine;
+    this.timeCreated = Variables.timer;
   }
 
   public void run() {
@@ -83,5 +88,13 @@ public class BCP {
 
   public int getId() {
     return id;
-  }  
+  } 
+  
+  public int getTimeCreated() {
+    return timeCreated;
+  }
+
+  public void setTimeCreated(int timeCreated) {
+    this.timeCreated = timeCreated;
+  }
 }

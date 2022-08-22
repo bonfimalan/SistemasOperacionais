@@ -29,7 +29,8 @@ public class ProcessInfoBox extends VBox {
     addChildren(nameLabel, timeLabel, priorityLabel);
   }
 
-  public ProcessInfoBox (int id, String name, int time, int priority, int deadLine) {
+  // create a process box with the time created and the deadline
+  public ProcessInfoBox (int id, String name, int time, int timeCreadted, int deadLine) {
     this.identifier = id;
     nameLabel = new Label(name);
     timeLabel = new Label("Time " + time + "s");
