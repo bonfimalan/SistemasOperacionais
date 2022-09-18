@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 17/09/22 20:14
+* Last update: 18/09/22 00:05
+* Name: MemoryUtil.java
+* Function:
+*******************************************************************/
 package algorithms.util;
 
 import javafx.scene.layout.AnchorPane;

@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 16/09/22 18:50
+* Last update: 17/09/22 19:52
+* Name: BCP.java
+* Function:
+*******************************************************************/
 package model;
 
 public class BCP {

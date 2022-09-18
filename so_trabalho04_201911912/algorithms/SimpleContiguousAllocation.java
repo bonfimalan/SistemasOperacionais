@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 17/09/22 17:45
+* Last update: 18/09/22 00:24
+* Name: SimpleContiguousAllocation.java
+* Function:
+*******************************************************************/
 package algorithms;
 
 import java.util.LinkedList;

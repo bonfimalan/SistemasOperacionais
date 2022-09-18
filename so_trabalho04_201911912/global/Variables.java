@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 16/09/22 18:56
+* Last update: 17/09/22 17:47
+* Name: Variables.java
+* Function:
+*******************************************************************/
 package global;
 
 public class Variables {

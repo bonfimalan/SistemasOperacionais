@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 16/09/22 19:21
+* Last update: 18/09/22 00:30
+* Name: MainController.java
+* Function:
+*******************************************************************/
 package controller;
 
 import java.net.URL;

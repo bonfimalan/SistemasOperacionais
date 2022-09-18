@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 16/09/22 19:12
+* Last update: 18/09/22 00:05
+* Name: InMemoryProcessView.java
+* Function:
+*******************************************************************/
 package view;
 
 import algorithms.util.MemoryUtil;

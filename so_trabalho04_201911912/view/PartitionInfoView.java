@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 16/09/22 19:24
+* Last update: 16/09/22 19:28
+* Name: PartitionInfoView.java
+* Function:
+*******************************************************************/
 package view;
 
 import javafx.scene.control.Label;
