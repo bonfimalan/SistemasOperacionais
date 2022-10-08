@@ -12,3 +12,10 @@ InMemoryProcessView {
   -fx-border-width: 1px;
   -fx-padding: 2px;
 }
+
+FreeSpaceView {
+  -fx-border-color: yellow;
+  -fx-border-style: solid;
+  -fx-border-width: 1px;
+  -fx-padding: 2px;
+}
