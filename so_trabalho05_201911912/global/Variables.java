@@ -12,6 +12,10 @@ public class Variables {
   public static final String[] ALOCATION_ALGS = {
     "1 - Simple Contiguous Allocation",
     "2 - Absolute Static Partitioned Allocation",
-    "3 - Relocatable Static Partitioned Allocation"
+    "3 - Relocatable Static Partitioned Allocation",
+    "4 - Best-fit",
+    "5 - Worst-fit",
+    "6 - First-fit",
+    "7 - Fast-fit"
   };
 }
