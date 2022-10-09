@@ -16,6 +16,10 @@ import java.util.ResourceBundle;
 import algorithms.AbsoluteStaticPartitionedAllocation;
 import algorithms.RelocatableStaticPartitionedAllocation;
 import algorithms.SimpleContiguousAllocation;
+import algorithms.fit.BestFit;
+import algorithms.fit.FastFit;
+import algorithms.fit.FirstFit;
+import algorithms.fit.WorstFit;
 import algorithms.interfaces.MemoryAlgInterface;
 import controller.interfaces.MainControllerInterface;
 import global.Variables;
@@ -36,6 +40,12 @@ import view.PartitionConfigView;
 public class MainController implements MainControllerInterface, Initializable {
   @FXML
   private Button addProcessButton;
+
+  @FXML
+  private Button upButton;
+
+  @FXML
+  private Button downButton;
 
   @FXML
   private ComboBox<String> alocationAlgComboBox;
@@ -186,6 +196,34 @@ public class MainController implements MainControllerInterface, Initializable {
         partitionQuantityContainer.setVisible(true);
         memorySizeContainer.setVisible(false);
         break;
+      case '4': // Best-fit
+        memoryManager = new BestFit(memory, processWaitArea, this);
+        addProcessButton.setDisable(true);
+        setVisibleComboBoxPartitionAndComboBox(false);
+        partitionQuantityContainer.setVisible(false);
+        memorySizeContainer.setVisible(true);
+        break;
+      case '5': // Worst-fit
+        memoryManager = new WorstFit(memory, processWaitArea, this);
+        addProcessButton.setDisable(true);
+        setVisibleComboBoxPartitionAndComboBox(false);
+        partitionQuantityContainer.setVisible(false);
+        memorySizeContainer.setVisible(true);
+        break;
+      case '6': // First-fit
+        memoryManager = new FirstFit(memory, processWaitArea, this);
+        addProcessButton.setDisable(true);
+        setVisibleComboBoxPartitionAndComboBox(false);
+        partitionQuantityContainer.setVisible(false);
+        memorySizeContainer.setVisible(true);
+        break;
+      case '7': // Fast-fit
+        memoryManager = new FastFit(memory, processWaitArea, this, partitionConfigArea);
+        addProcessButton.setDisable(true);
+        setVisibleComboBoxPartitionAndComboBox(false);
+        partitionQuantityContainer.setVisible(false);
+        memorySizeContainer.setVisible(true);
+        break;
     }
   }
 
@@ -208,7 +246,8 @@ public class MainController implements MainControllerInterface, Initializable {
   void confirmPartitions(ActionEvent event) {
     try {
       int partitionAmount = Integer.valueOf(partitionQuantityTextField.getText());
-      if(partitionAmount <= 0) return;
+      if (partitionAmount <= 0)
+        return;
 
       partitionConfigList = new ArrayList<>();
       partitionConfigArea.getChildren().clear();
@@ -239,16 +278,18 @@ public class MainController implements MainControllerInterface, Initializable {
       partitionSizePointer = partitionConfigList.get(i).getPartitionSize();
       partitionSizes[i] = partitionSizePointer;
       memorySize += partitionSizePointer;
-      if(partitionSizePointer <= 0) return;
+      if (partitionSizePointer <= 0)
+        return;
     }
 
-    for (PartitionConfigView p : partitionConfigList) { p.disablePartiotionTextArea(); }
+    for (PartitionConfigView p : partitionConfigList) {
+      p.disablePartiotionTextArea();
+    }
     memoryManager.setMemorySize(memorySize);
     memoryManager.partitionAlgConfig(partitionConfigList, partitionSizes);
 
-    
     partitionChoseComboBox.getSelectionModel().select(0);
-    
+
     partitionSetButton.setDisable(true);
 
     addProcessButton.setDisable(false);
@@ -292,6 +333,13 @@ public class MainController implements MainControllerInterface, Initializable {
   void applyMemorySize(ActionEvent event) {
     try {
       memoryManager.setMemorySize(Integer.valueOf(memorySizeTextField.getText()));
+      
+      if (memoryManager instanceof FastFit) {
+        addProcessButton.setDisable(true);       
+        partitionQuantityContainer.setVisible(true);
+      }
+      else
+        addProcessButton.setDisable(false);
     } catch (Exception e) {
     }
   }

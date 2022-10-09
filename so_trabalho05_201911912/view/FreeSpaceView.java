@@ -24,6 +24,7 @@ public class FreeSpaceView extends HBox {
     this.size = newSize;
     memorySizeLabel.setText("Empty size: " + newSize);
     memorySizeLabel.setMinHeight(newSize * MemoryUtil.SIZE_MULTIPLYER);
+    memorySizeLabel.setMaxHeight(newSize * MemoryUtil.SIZE_MULTIPLYER);
   }
 
   public int getIdentifier() {

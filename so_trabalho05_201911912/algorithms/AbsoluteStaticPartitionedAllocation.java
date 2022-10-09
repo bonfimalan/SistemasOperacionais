@@ -108,7 +108,5 @@ public class AbsoluteStaticPartitionedAllocation implements MemoryAlgInterface {
 
   @Override
   public void partitionAlgConfig(List<PartitionConfigView> partitionConfigList, int[] partitionSizes) {
-    // TODO Auto-generated method stub
-    
   }
 }

@@ -1,5 +1,8 @@
 package algorithms.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import algorithms.exceptions.ProcessTooBigException;
 import algorithms.interfaces.MemoryLinkedListInterface;
 import controller.interfaces.MainControllerInterface;
@@ -48,8 +51,8 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
     int sizeDiference = 0;
     for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
       // finds the free space with the biggest free space avaliable
-      if (pointer.isFreeSpace() && process.getSize() < pointer.getSize()
-          && sizeDiference < (pointer.getSize() - process.getSize())) {
+      if (pointer.isFreeSpace() && process.getSize() <= pointer.getSize()
+          && sizeDiference <= (pointer.getSize() - process.getSize())) {
         sizeDiference = pointer.getSize() - process.getSize();
         worstFreeSpace = pointer;
       }
@@ -72,7 +75,6 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
 
     if (head == null) {
       addWhenMemoryEmpity(process, memorySize);
-
       return true;
     }
 
@@ -82,7 +84,7 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
     MemoryChunk bestFreeSpace = null;
     int sizeDiference;
     for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
-      if (pointer.isFreeSpace() && process.getSize() < pointer.getSize()) {
+      if (pointer.isFreeSpace() && process.getSize() <= pointer.getSize()) {
         bestFreeSpace = pointer;
         break;
       } // end if
@@ -93,9 +95,8 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
 
     // calculates the size diference
     sizeDiference = bestFreeSpace.getSize() - process.getSize();
-
     for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
-      if (pointer.isFreeSpace() && process.getSize() < pointer.getSize()
+      if (pointer.isFreeSpace() && process.getSize() <= pointer.getSize()
           && sizeDiference > (pointer.getSize() - process.getSize())) {
         bestFreeSpace = pointer;
         sizeDiference = pointer.getSize() - process.getSize(); // updates the difference in size
@@ -118,21 +119,21 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
 
     if (head == null) {
       addWhenMemoryEmpity(process, memorySize);
-
+      printList();
       return true;
     }
-
+    
     // adds using the first fit strategy
 
     // finding the free space
     for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
       // finds the first free space
-      if (pointer.isFreeSpace() && process.getSize() < pointer.getSize()) {
+      if (pointer.isFreeSpace() && process.getSize() <= pointer.getSize()) {
         if (pointer.getSize() - process.getSize() == 0)
           addProcessWithSameSpaceToList(pointer, process);
         else
           addProcessToList(pointer, process);
-
+        printList();
         return true;
       } // end if
     } // end for
@@ -141,7 +142,44 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
   }
 
   @Override
-  public void removeProcessFromMemory(int id) {
+  public boolean addQuickFreeMemorySpaceThatFits(BCP process, int memorySize, MemoryChunk freespace) throws ProcessTooBigException {
+    if (process.getSize() > memorySize)
+      throw new ProcessTooBigException();
+
+    if (head == null) {
+      addWhenMemoryEmpity(process, memorySize);
+      printList();
+      return true;
+    }
+
+    if(freespace == null)
+      return addToFirstFreeMemorySpaceThatFits(process, memorySize);
+
+    if(freespace != null && process.getSize() - freespace.getSize() == 0) {
+      addProcessWithSameSpaceToList(freespace, process);
+      return true;
+    }
+
+    if(freespace != null && process.getSize() - freespace.getSize() != 0) {
+      addProcessToList(freespace, process);
+      return true;
+    }
+
+    return false;
+  }
+
+  public List<MemoryChunk> getFreeSpaceSet(int size) {
+    List<MemoryChunk> list = new ArrayList<>();
+    for(MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
+      if(pointer.isFreeSpace() && pointer.getSize() == size)
+        list.add(pointer);
+    }
+
+    return list;
+  }
+
+  @Override
+  public void removeProcessFromMemory(int id, int memorySize) {
 
     // finding the process that must be removed
     MemoryChunk chunkToRemove = null;
@@ -159,12 +197,6 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
     MemoryChunk nextChunk = chunkToRemove.getNext();
     chunkToRemove.setSize(chunkToRemove.getNode().getSize());
 
-    if (chunkToRemove == head && nextChunk == tail) {
-      clear();
-      memory.getChildren().clear(); // clears the memory
-      return;
-    }
-
     // removes the process from GUI memory
     removeProcessFromView(id);
     chunkToRemove.setNode(null); // now it's a empty space
@@ -173,6 +205,8 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
     // if the next is not a free space it won't do anything
     if (nextChunk != null && nextChunk.isFreeSpace()) {
       chunkToRemove.setNext(nextChunk.getNext());
+      if(nextChunk.getNext() != null)
+        nextChunk.getNext().setPrevious(chunkToRemove);
       chunkToRemove.setSize(chunkToRemove.getSize() + nextChunk.getSize());
       setPointersToNull(nextChunk);
       // removing the next chunk that is a free space from the view
@@ -181,6 +215,9 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
 
     if (previousChunk != null && previousChunk.isFreeSpace()) {
       chunkToRemove.setPrevious(previousChunk.getPrevious());
+      if(previousChunk.getPrevious() != null)
+        previousChunk.getPrevious().setNext(chunkToRemove);
+
       chunkToRemove.setStartPointerInGui(previousChunk.getStartPointerInGui());
       chunkToRemove.setSize(chunkToRemove.getSize() + previousChunk.getSize());
       setPointersToNull(previousChunk);
@@ -188,7 +225,33 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
       removeFreeSpaceFromGui(previousChunk.getId());
     } // end if
 
+    /*
+    if(head.getSize() == memorySize && head.isFreeSpace()){
+      removeFreeSpaceFromGui(head.getId());
+      clear();
+      memory.getChildren().clear();
+    } */
+    
     addFreeSpaceToGui(chunkToRemove);
+    printList();
+  }
+
+  @Deprecated
+  private void setNewTail() {
+    MemoryChunk a = null;
+    for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
+      a = pointer;
+    }
+    tail = a;
+  }
+
+  private void printList() {
+    MemoryChunk a = null;
+    for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
+      System.out.print(pointer + " -> ");
+      a = pointer;
+    }
+    System.out.println("\n(" + tail + ")");
   }
 
   private void setPointersToNull(MemoryChunk chunk) {
@@ -205,6 +268,9 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
     // creates a new element in the linked list that poinst to the previous of the
     // free space and to the free space
     MemoryChunk newInMemoryProcess = new MemoryChunk(freeSpacePointer.getPrevious(), process, freeSpacePointer);
+    newInMemoryProcess.setSize(process.getSize());
+    newInMemoryProcess.setPrevious(freeSpacePointer.getPrevious());
+    newInMemoryProcess.setNext(freeSpacePointer);
     // updates the next of the previous free space pointer
     freeSpacePointer.getPrevious().setNext(newInMemoryProcess);
     // the previous of the free space is now the new process
@@ -235,23 +301,48 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
   }
 
   private void addWhenMemoryEmpity(BCP process, int memorySize) {
-    head = new MemoryChunk(null, process, tail);
-    head.setStartPointerInGui(0);
+    BCP emptyBCPProcess = new BCP(0, 0); // POG (Programacao Orientada a gambiarra)
+    
+    MemoryChunk temp = new MemoryChunk(null, process, null);
+    head = new MemoryChunk(null, emptyBCPProcess, null);
+    temp.setStartPointerInGui(0);
 
-    tail = new MemoryChunk(head, null, null);
+    tail = new MemoryChunk(null, null, null);
     tail.setStartPointerInGui(process.getSize());
     tail.setSize(memorySize - process.getSize());
 
+    // NULL <- head
+    head.setPrevious(null);
+    // NULL <- head -> temp
+    head.setNext(temp);
+
+    // NULL <- head <-> temp
+    temp.setPrevious(head);
+    // NULL <- head <-> temp -> tail
+    temp.setNext(tail);
+
+    // NULL <- head <-> temp <-> tail
+    tail.setPrevious(temp);
+    // NULL <- head <-> temp <-> tail -> NULL
+    tail.setNext(null);
+
     // =================================================
     // stuff related to the GUI
-    addNewProcessToGui(head, controller);
+    addNewProcessToGui(temp, controller);
     addFreeSpaceToGui(tail);
     // =================================================
   }
 
+  // =====================================================
+  // methods related to GUI
+
+  public void configMemoryAreaHeigth(int size) {
+    this.memory.setPrefHeight(size * MemoryUtil.SIZE_MULTIPLYER);
+  }
+
   private void addFreeSpaceToGui(MemoryChunk freeSpace) {
     FreeSpaceView freeSpaceView = new FreeSpaceView(freeSpace.getId(), freeSpace.getSize());
-    freeSpaceView.setLayoutY(freeSpace.getStartPointerInGui());
+    freeSpaceView.setLayoutY(freeSpace.getStartPointerInGui() * MemoryUtil.SIZE_MULTIPLYER);
 
     memory.getChildren().add(freeSpaceView);
   }
@@ -275,7 +366,10 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
         if (freeSpaceView.getIdentifier() == freeSpace.getId()) {
           // updates the free space
           freeSpaceView.updateSize(freeSpace.getSize());
-          freeSpaceView.setLayoutY(freeSpace.getStartPointerInGui());
+          freeSpaceView.setMinHeight(freeSpace.getSize() * MemoryUtil.SIZE_MULTIPLYER);
+          freeSpaceView.setPrefHeight(freeSpace.getSize() * MemoryUtil.SIZE_MULTIPLYER);
+          freeSpaceView.setMaxHeight(freeSpace.getSize() * MemoryUtil.SIZE_MULTIPLYER);
+          freeSpaceView.setLayoutY(freeSpace.getStartPointerInGui() * MemoryUtil.SIZE_MULTIPLYER);
           return;
         }
       }
@@ -284,7 +378,7 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
 
   private void addNewProcessToGui(MemoryChunk newProcess, MainControllerInterface controller) {
     InMemoryProcessView processInMemory = new InMemoryProcessView(controller, newProcess.getNode());
-    processInMemory.setLayoutY(newProcess.getStartPointerInGui());
+    processInMemory.setLayoutY(newProcess.getStartPointerInGui() * MemoryUtil.SIZE_MULTIPLYER);
 
     memory.getChildren().add(processInMemory);
   }

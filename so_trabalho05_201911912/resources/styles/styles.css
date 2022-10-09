@@ -11,6 +11,8 @@ InMemoryProcessView {
   -fx-border-style: solid;
   -fx-border-width: 1px;
   -fx-padding: 2px;
+
+  -fx-pref-width: 190px;
 }
 
 FreeSpaceView {
@@ -18,4 +20,20 @@ FreeSpaceView {
   -fx-border-style: solid;
   -fx-border-width: 1px;
   -fx-padding: 2px;
+
+  -fx-pref-width: 190px;
+}
+
+#upButton {
+  -fx-background-image: url("../image/up-arrow.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: 25 25;
+  -fx-background-position: center center;
+}
+
+#downButton {
+  -fx-background-image: url("../image/down-arrow.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: 25 25;
+  -fx-background-position: center center;
 }

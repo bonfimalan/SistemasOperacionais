@@ -23,7 +23,9 @@ public class BestFit extends FitAlgSuperClass implements MemoryAlgInterface {
       if(super.memoryList.addToSmallestFreeSpaceThatFits(process, super.memorySize)) return;
 
       // the process was not added
-      super.waitList.add(process);
+      //super.waitList.add(process);
+
+      //super.addProcessToWait(process);
 
     } catch (ProcessTooBigException e) {
       super.controller.addWarning("Process is bigger than the memory");
@@ -32,17 +34,20 @@ public class BestFit extends FitAlgSuperClass implements MemoryAlgInterface {
 
   @Override
   public void removeProcess(int id) {
-    super.memoryList.removeProcessFromMemory(id);
-
+    super.memoryList.removeProcessFromMemory(id, memorySize);
+    /*
     if(!super.waitList.isEmpty()) {
       // will add all process from the wait list that the memory can fit
       for(BCP process : waitList) {
         try {
-          if(super.memoryList.addToSmallestFreeSpaceThatFits(process, super.memorySize))
+          if(super.memoryList.addToSmallestFreeSpaceThatFits(process, super.memorySize)){
             waitList.remove(process);
+            super.removeFromWaitViewSuper(process.getId());
+          }
         } catch (ProcessTooBigException e) { }
       }
     }
+     */
   }
 
   @Override
@@ -53,12 +58,11 @@ public class BestFit extends FitAlgSuperClass implements MemoryAlgInterface {
   @Override
   public void setMemorySize(int memorySize) {
     super.memorySize = memorySize;
+    memoryList.configMemoryAreaHeigth(memorySize);
   }
 
   @Override
   public void partitionAlgConfig(List<PartitionConfigView> partitionConfigList, int[] partitionSizes) {
-    // TODO Auto-generated method stub
-    
   }
   
 }

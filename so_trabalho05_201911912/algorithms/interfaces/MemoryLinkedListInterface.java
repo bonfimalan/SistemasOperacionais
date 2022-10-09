@@ -1,7 +1,6 @@
 package algorithms.interfaces;
 
 import algorithms.exceptions.ProcessTooBigException;
-import algorithms.util.MemoryUtil;
 import model.BCP;
 
 public interface MemoryLinkedListInterface {
@@ -11,16 +10,18 @@ public interface MemoryLinkedListInterface {
 
   public boolean addToFirstFreeMemorySpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException;
 
-  public void removeProcessFromMemory(int id);
+  public boolean addQuickFreeMemorySpaceThatFits(BCP process, int memorySize, MemoryChunk freespace) throws ProcessTooBigException;
+
+  public void removeProcessFromMemory(int id, int memorySize);
 
   public class MemoryChunk {
-    private MemoryChunk previous;
     private BCP node;
     private int size;
     private int startPointerInGui;
     private int id;
     private static int cont;
-
+    
+    private MemoryChunk previous;
     private MemoryChunk next;
 
     public MemoryChunk(MemoryChunk previous, BCP node, MemoryChunk next) {
@@ -29,6 +30,11 @@ public interface MemoryLinkedListInterface {
       this.next = next;
       this.id = cont;
       cont++;
+    }
+
+    @Override
+    public String toString() {
+      return "Size: " + size + " | Start point: " + startPointerInGui + " | Id: " + id;
     }
 
     public boolean isFreeSpace() {
@@ -71,7 +77,7 @@ public interface MemoryLinkedListInterface {
     }
 
     public void setStartPointerInGui(int startPointerInGui) {
-      this.startPointerInGui = startPointerInGui * MemoryUtil.SIZE_MULTIPLYER;
+      this.startPointerInGui = startPointerInGui;
     }
 
     public int getId() {

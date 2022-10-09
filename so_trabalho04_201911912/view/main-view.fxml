@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" spacing="2.0">
          <children>
@@ -36,8 +36,8 @@
                               <TextField fx:id="processSizeTextField" prefWidth="50.0" text="3" />
                               <VBox>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#processSizeUp" text="+" />
-                                    <Button mnemonicParsing="false" onAction="#processSizeDown" text="_" />
+                                    <Button fx:id="upButton" mnemonicParsing="false" onAction="#processSizeUp" text="+" />
+                                    <Button fx:id="downButton" mnemonicParsing="false" onAction="#processSizeDown" text="_" />
                                  </children>
                               </VBox>
                               <Button fx:id="addProcessButton" mnemonicParsing="false" onAction="#addProcess" text="ADD PROCESS" />

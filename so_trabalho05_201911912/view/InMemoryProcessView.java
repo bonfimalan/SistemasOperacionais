@@ -27,6 +27,7 @@ public class InMemoryProcessView extends HBox {
     super.setSpacing(2);
 
     super.setMinHeight(bcp.getSize() * MemoryUtil.SIZE_MULTIPLYER);
+    super.setMaxHeight(bcp.getSize() * MemoryUtil.SIZE_MULTIPLYER);
 
     this.processName = new Label("Process " + bcp.getId());
     this.processSize = new Label("size: " + bcp.getSize());
