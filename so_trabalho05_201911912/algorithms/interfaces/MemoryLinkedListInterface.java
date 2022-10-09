@@ -5,13 +5,13 @@ import algorithms.util.MemoryUtil;
 import model.BCP;
 
 public interface MemoryLinkedListInterface {
-  public void addToBiggestFreeSpace(BCP process, int memorySize) throws ProcessTooBigException;
+  public boolean addToBiggestFreeSpace(BCP process, int memorySize) throws ProcessTooBigException;
 
-  public void addToSmallestFreeSpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException;
+  public boolean addToSmallestFreeSpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException;
 
-  public void addToFirstFreeMemorySpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException;
+  public boolean addToFirstFreeMemorySpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException;
 
-  public void removeProcessFromMemory(BCP process);
+  public void removeProcessFromMemory(int id);
 
   public class MemoryChunk {
     private MemoryChunk previous;

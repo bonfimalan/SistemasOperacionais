@@ -31,14 +31,14 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
   }
 
   @Override
-  public void addToBiggestFreeSpace(BCP process, int memorySize) throws ProcessTooBigException {
+  public boolean addToBiggestFreeSpace(BCP process, int memorySize) throws ProcessTooBigException {
     if (process.getSize() > memorySize)
       throw new ProcessTooBigException();
 
     if (head == null) {
       addWhenMemoryEmpity(process, memorySize);
 
-      return;
+      return true;
     }
 
     // adds using the worst fit strategy
@@ -55,21 +55,25 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
       }
     }
 
+    // there's no free space
+    if(worstFreeSpace == null) return false;
+
     if (sizeDiference == 0)
       addProcessWithSameSpaceToList(worstFreeSpace, process);
     else
       addProcessToList(worstFreeSpace, process);
+    return true;
   }
 
   @Override
-  public void addToSmallestFreeSpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException {
+  public boolean addToSmallestFreeSpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException {
     if (process.getSize() > memorySize)
       throw new ProcessTooBigException();
 
     if (head == null) {
       addWhenMemoryEmpity(process, memorySize);
 
-      return;
+      return true;
     }
 
     // adds using the best fit strategy
@@ -84,6 +88,9 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
       } // end if
     } // end for
 
+    // there's no chunk that can holds the process
+    if (bestFreeSpace == null) return false;
+
     // calculates the size diference
     sizeDiference = bestFreeSpace.getSize() - process.getSize();
 
@@ -95,24 +102,24 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
         // is the best fit
         if (sizeDiference == 0) {
           addProcessWithSameSpaceToList(bestFreeSpace, process);
-          return;
+          return true;
         } // end if
       } // end if
     } // end for
 
     addProcessToList(bestFreeSpace, process);
-
+    return true;
   }
 
   @Override
-  public void addToFirstFreeMemorySpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException {
+  public boolean addToFirstFreeMemorySpaceThatFits(BCP process, int memorySize) throws ProcessTooBigException {
     if (process.getSize() > memorySize)
       throw new ProcessTooBigException();
 
     if (head == null) {
       addWhenMemoryEmpity(process, memorySize);
 
-      return;
+      return true;
     }
 
     // adds using the first fit strategy
@@ -126,18 +133,20 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
         else
           addProcessToList(pointer, process);
 
-        break;
+        return true;
       } // end if
     } // end for
+
+    return false; // the process was not added
   }
 
   @Override
-  public void removeProcessFromMemory(BCP process) {
+  public void removeProcessFromMemory(int id) {
 
     // finding the process that must be removed
     MemoryChunk chunkToRemove = null;
     for (MemoryChunk pointer = head; pointer != null; pointer = pointer.getNext()) {
-      if (pointer.getNode() != null && pointer.getNode().getId() == process.getId()) {
+      if (pointer.getNode() != null && pointer.getNode().getId() == id) {
         chunkToRemove = pointer;
         break;
       }
@@ -152,11 +161,12 @@ public class MemoryLinkedList implements MemoryLinkedListInterface {
 
     if (chunkToRemove == head && nextChunk == tail) {
       clear();
+      memory.getChildren().clear(); // clears the memory
       return;
     }
 
     // removes the process from GUI memory
-    removeProcessFromView(process.getId());
+    removeProcessFromView(id);
     chunkToRemove.setNode(null); // now it's a empty space
 
     // working in the next chunk first
