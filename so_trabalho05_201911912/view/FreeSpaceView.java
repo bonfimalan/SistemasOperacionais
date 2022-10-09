@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 08/10/22 16:23
+* Last update: 08/10/22 23:35
+* Name: FreeSpaceView.java
+* Function:
+*******************************************************************/
 package view;
 
 import algorithms.util.MemoryUtil;

@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 08/10/22 20:54
+* Last update: 09/10/22 18:55
+* Name: FirstFit.java
+* Function:
+*******************************************************************/
 package algorithms.fit;
 
 import java.util.List;

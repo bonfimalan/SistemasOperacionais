@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 09/10/22 15:50
+* Last update: 09/10/22 18:54
+* Name: FastNode.java
+* Function:
+*******************************************************************/
 package algorithms.util;
 
 import java.util.List;

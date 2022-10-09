@@ -1,3 +1,11 @@
+/********************************************************************
+* Author: Alan Bonfim Santos
+* Registration: 201911912
+* Initial date: 08/10/22 15:07
+* Last update: 09/10/22 15:38
+* Name: MemoryLinkedListInterface.java
+* Function:
+*******************************************************************/
 package algorithms.interfaces;
 
 import algorithms.exceptions.ProcessTooBigException;
